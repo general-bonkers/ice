@@ -1,64 +1,92 @@
 package org.sandbox;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.DisplayMode;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
+import java.awt.image.BufferStrategy;
 
-//Swing Program Template
-@SuppressWarnings("serial")
-public class Windowed2d extends JPanel {
+public class Windowed2d {
 
-	
- 
-   // Name-constants
-   public static final int CANVAS_WIDTH = 640;
-   public static final int CANVAS_HEIGHT = 480;
-   public static final String TITLE = "...Title...";
-   // ......
- 
-   // private variables of GUI components
-   // ......
- 
-   /** Constructor to setup the GUI components */
-   public Windowed2d() {
-      setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
-      // "this" JPanel container sets layout
-      // setLayout(new ....Layout());
- 
-      // Allocate the UI components
-      // .....
- 
-      // "this" JPanel adds components
-      // add(....)
- 
-      // Source object adds listener
-      // .....
-   }
- 
-   /** Custom painting codes on this JPanel */
-   @Override
-   public void paintComponent(Graphics g) {
-      super.paintComponent(g);  // paint background
-      setBackground(Color.BLACK);
- 
-      // Your custom painting codes
-      // ......
-   }
- 
-   /** The entry main() method */
-   public static void main(String[] args) {
-      // Run GUI codes in the Event-Dispatching thread for thread safety
-      SwingUtilities.invokeLater(new Runnable() {
-         public void run() {
-            JFrame frame = new JFrame(TITLE);
-            frame.setContentPane(new Windowed2d());
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.pack();             // "this" JFrame packs its components
-            frame.setLocationRelativeTo(null); // center the application window
-            frame.setVisible(true);            // show it
-         }
-      });
-   }
+  private static int counter = 0;
+
+  private static final int MAX = 50;
+
+  private static DisplayMode MODES[] = new DisplayMode[] {
+      new DisplayMode(640, 480, 32, 1), new DisplayMode(640, 480, 16, 1),
+      new DisplayMode(640, 480, 8, 1) };
+
+  private static DisplayMode getBestDisplayMode(GraphicsDevice device) {
+    for (int x = 0, xn = MODES.length; x < xn; x++) {
+      DisplayMode[] modes = device.getDisplayModes();
+      for (int i = 0, in = modes.length; i < in; i++) {
+        if (modes[i].getWidth() == MODES[x].getWidth()
+            && modes[i].getHeight() == MODES[x].getHeight()
+            && modes[i].getBitDepth() == MODES[x].getBitDepth()) {
+          return MODES[x];
+        }
+      }
+    }
+    return null;
+  }
+
+  public static void main(String args[]) {
+    GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment
+        .getLocalGraphicsEnvironment();
+    GraphicsDevice graphicsDevice = graphicsEnvironment
+        .getDefaultScreenDevice();
+    DisplayMode originalDisplayMode = graphicsDevice.getDisplayMode();
+
+    try {
+      Frame frame = new Frame();
+      frame.setUndecorated(true);
+      frame.setIgnoreRepaint(true);
+      graphicsDevice.setFullScreenWindow(frame);
+      if (graphicsDevice.isDisplayChangeSupported()) {
+        graphicsDevice
+            .setDisplayMode(getBestDisplayMode(graphicsDevice));
+      }
+      frame.createBufferStrategy(2); // 2 buffers
+      Rectangle bounds = frame.getBounds();
+      BufferStrategy bufferStrategy = frame.getBufferStrategy();
+      while (!done()) {
+        Graphics g = null;
+        try {
+          g = bufferStrategy.getDrawGraphics();
+          if ((counter <= 2)) { // 2 buffers
+            g.setColor(Color.CYAN);
+            g.fillRect(0, 0, bounds.width, bounds.height);
+          }
+          g.setColor(Color.RED);
+          // redraw prior line, too, since 2 buffers
+          if (counter != 1) {
+            g.drawLine(counter - 1, (counter - 1) * 5,
+                bounds.width, bounds.height);
+          }
+          g.drawLine(counter, counter * 5, bounds.width,
+              bounds.height);
+          bufferStrategy.show();
+        } finally {
+          if (g != null) {
+            g.dispose();
+          }
+        }
+        try {
+          Thread.sleep(250);
+        } catch (InterruptedException ignored) {
+        }
+      }
+    } finally {
+      graphicsDevice.setDisplayMode(originalDisplayMode);
+      graphicsDevice.setFullScreenWindow(null);
+    }
+    System.exit(0);
+  }
+
+  private static boolean done() {
+    return (counter++ == MAX);
+  }
 }
-
-
