@@ -9,6 +9,8 @@ import java.awt.GraphicsDevice;
  *
  */
 public class Mouse {
+	
+	public static enum MouseClick { NONE, LEFT, RIGHT, WHEEL };
 
 	private MouseDriver mouseDriver;
 	
@@ -19,9 +21,22 @@ public class Mouse {
 		graphicsDevice.getFullScreenWindow().addMouseMotionListener( mouseDriver );
 	}
 	
-	public int getMouseButton()
+	public MouseClick getMouseButton()
 	{
-		return mouseDriver.getMouseButton();
+		final int button = mouseDriver.getMouseButton();
+		
+	    switch(button) 
+		{
+	    	case 0:
+	    		return MouseClick.NONE;
+	    	case 1:	    	
+	    		return MouseClick.LEFT;
+	    	case 2:
+	    		return MouseClick.WHEEL;
+	    	case 3:
+	    		return MouseClick.RIGHT;
+		}
+	    return MouseClick.NONE;
 	}
 	
 	public int getMouseX()

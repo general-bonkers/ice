@@ -74,7 +74,7 @@ public class FullScreen2d {
 
              bufferStrategy.show();
           Thread.sleep(20);
-          if ( mouse.getMouseButton() == 1 )
+          if ( mouse.getMouseButton() == Mouse.MouseClick.RIGHT )
           {
         	  break;
           }
