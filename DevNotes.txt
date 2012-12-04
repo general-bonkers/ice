@@ -13,6 +13,7 @@
 -[Nice to Have]-----------------------------------------------------------------------------------------------
  doodads
  bosses
+ turbo mode (for kiddies who play fast)
  turrets (slowly shoot one little bullet at a time at you.. may bounce off bricks not hurting
           them, but destroys ball. these would have to aim and shoot slow, with not much accuracy)
 
@@ -37,6 +38,13 @@ stickyball - sticks to paddle and allows you to more accurately place ball (clic
 glasspaddle - your paddle has a chance to break until you switch to another drop
 1up - extra life
 
+-[Social Aspect]----------------------------------------------------------------
+ - allow people to upload level packs to (somewhere)
+ - probably need to verify them before adding (to ensure that no one puts bad things on there)
+ - download the map packs in game and vote on them.
+ 
+
+
 -[Funky Level Ideas]-----------------------------------------------------------------------------------------------
 Funky Level Ideas:
  - microsoft windows window?
@@ -49,4 +57,18 @@ Funky Level Ideas:
   
 -[Links to Music & Sounds:]-----------------------------------------------------------------------------------------------
 http://www.freesound.org/people/Setuniman/sounds/171085/ <-- not bad for intro
+
+
+
+-[Dev NOTES]-----------------------------------
+ - completed initial graphics & mouse io
+ - 
+
+
+
+
+
+
+
+
  
