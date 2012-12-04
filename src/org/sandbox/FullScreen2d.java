@@ -10,11 +10,12 @@ import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 
 import org.ice.graphics.io.Draw;
+import org.ice.io.Mouse;
 
 public class FullScreen2d {
 
   private static int counter = 0;
-
+  private static int counter2 = 100;
   private static final int MAX = 50;
 
   private static DisplayMode MODES[] = new DisplayMode[] {
@@ -45,6 +46,8 @@ public class FullScreen2d {
       Frame frame = new Frame();
       frame.setUndecorated(true);
       frame.setIgnoreRepaint(true);
+      
+      
       graphicsDevice.setFullScreenWindow(frame);
       if (graphicsDevice.isDisplayChangeSupported()) {
         graphicsDevice
@@ -53,15 +56,28 @@ public class FullScreen2d {
       frame.createBufferStrategy(1); // 2 buffers
       Rectangle bounds = frame.getBounds();
       
+      Mouse mouse = new Mouse( graphicsDevice );
+      
+      
       BufferStrategy bufferStrategy = frame.getBufferStrategy();
       Draw draw = new org.ice.graphics.io.Draw( bufferStrategy );
       while (!done()) {
         	 draw.cls( 0 );
-        	draw.line( counter - 1, (counter - 1) * 5, bounds.width, bounds.height, 2 );
+        	draw.line( counter - 1, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 2 );
+        	draw.line( counter - 1 +100, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 3  );
+        	draw.line( counter2 - 1 +300, (counter2 - 1) * 5, counter - 1, (counter - 1) * 5, 4  );
         	 draw.graphics().drawString( "TEST!", 1, 1 ); 
              draw.graphics().setColor(Color.RED);
+
+             draw.graphics().setColor( Color.WHITE );
+             draw.graphics().drawString( "Mouse: " + String.valueOf( mouse.getMouseX() ) + "|" + String.valueOf( mouse.getMouseX() ), 20, 20 );
+
              bufferStrategy.show();
-          Thread.sleep(50);
+          Thread.sleep(20);
+          if ( mouse.getMouseButton() == 1 )
+          {
+        	  break;
+          }
       }
       if (draw != null) {
             draw.dispose();
@@ -73,6 +89,14 @@ public class FullScreen2d {
   }
 
   private static boolean done() {
-    return (counter++ == MAX);
+    //return (counter++ == MAX);
+	counter++;
+	counter2--;
+	if ( counter > 100 )
+	{
+		counter = 0;
+		counter2 = 100;
+	}
+	return false;
   }
 }
