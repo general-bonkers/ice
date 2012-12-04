@@ -11,6 +11,7 @@ import java.awt.image.BufferStrategy;
 
 import org.ice.graphics.io.Draw;
 import org.ice.io.Mouse;
+import org.sandbox.Brick.Type;
 
 public class FullScreen2d {
 
@@ -61,24 +62,33 @@ public class FullScreen2d {
       
       BufferStrategy bufferStrategy = frame.getBufferStrategy();
       Draw draw = new org.ice.graphics.io.Draw( bufferStrategy );
+
+      Brick b = new Brick(80, 80, 64, 24, 1, 1, Type.Standard);
+      
+      
       while (!done()) {
-        	 draw.cls( 0 );
-        	draw.line( counter - 1, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 2 );
-        	draw.line( counter - 1 +100, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 3  );
-        	draw.line( counter2 - 1 +300, (counter2 - 1) * 5, counter - 1, (counter - 1) * 5, 4  );
-        	 draw.graphics().drawString( "TEST!", 1, 1 ); 
-             draw.graphics().setColor(Color.RED);
-
-             draw.graphics().setColor( Color.WHITE );
-             draw.graphics().drawString( "Mouse: " + String.valueOf( mouse.getMouseX() ) + "|" + String.valueOf( mouse.getMouseY() ), 20, 20 );
-
-             bufferStrategy.show();
-          Thread.sleep(20);
-          if ( mouse.getMouseButton() == Mouse.MouseClick.RIGHT )
-          {
-        	  break;
-          }
+    	  draw.cls( 0 );
+    	  
+    	  b.DrawBrick(bufferStrategy);
+    	
+//    	  draw.line( counter - 1, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 2 );
+//    	  draw.line( counter - 1 +100, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 3  );
+//    	  draw.line( counter2 - 1 +300, (counter2 - 1) * 5, counter - 1, (counter - 1) * 5, 4  );
+//    	  draw.graphics().drawString( "TEST!", 1, 1 ); 
+//    	  draw.graphics().setColor(Color.RED);
+			
+    	  draw.graphics().setColor( Color.WHITE );
+    	  draw.graphics().drawString( "Mouse: " + String.valueOf( mouse.getMouseX() ) + "|" + String.valueOf( mouse.getMouseY() ), 20, 20 );
+			
+    	  bufferStrategy.show();
+    	  Thread.sleep(20);
+         
+    	  if ( mouse.getMouseButton() == Mouse.MouseClick.RIGHT )
+    	  {
+    		  break;
+    	  }
       }
+      
       if (draw != null) {
             draw.dispose();
       }

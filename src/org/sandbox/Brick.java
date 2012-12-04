@@ -1,6 +1,9 @@
 package org.sandbox;
 
 import org.sandbox.IceEngineException.ExceptionType;
+import org.ice.graphics.io.Draw;
+import java.awt.Frame;
+import java.awt.image.BufferStrategy;
 
 public class Brick {
 
@@ -80,19 +83,15 @@ public class Brick {
 	{
 		// Implementation Needed.
 		// Should set all variables to their default values and call Erase.
-		Erase();
 	}
 	
-	public void Draw()
+	public void DrawBrick(BufferStrategy bufferStrategy)
 	{
-		// Implementation Needed.
-		// Should draw the brick on the screen.
-	}
-	
-	public void Erase()
-	{
-		// Implementation Needed.
-		// Should erase the brick from the screen.
+		Draw draw = new org.ice.graphics.io.Draw( bufferStrategy );
+		
+		draw.box(screen_x, screen_y, width, height, color, true);
+  	  	draw.box(screen_x + 1, screen_y + 1, width - 2, height - 2, color + 8, false);
+  	  	draw.box(screen_x, screen_y, width, height, color + 8, false);
 	}
 	
 	public void Hit()
@@ -110,7 +109,7 @@ public class Brick {
 		// do nothing for now.
 	}
 	
-	public Brick(int screen_x, int screen_y, int height, int width, int color, int strength, Type brickType) throws Exception
+	public Brick(int screen_x, int screen_y, int width, int height, int color, int strength, Type brickType) throws Exception
 	{
 		this.screen_x = screen_x;
 		this.screen_y = screen_y;
