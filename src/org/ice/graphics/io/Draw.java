@@ -2,11 +2,15 @@ package org.ice.graphics.io;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferStrategy;
 
 public class Draw {
 
+	public static int MAX_IMAGES = 256; // arbitrary
 	
+	private Image[] images;
+			
 	private static Color getColor( int color )
 	{
 		return DOSPalette.pal[ color ];
@@ -20,8 +24,12 @@ public class Draw {
 	
 	public Graphics graphics()
 	{
-		return this.graphics;
+		images = new Image[256];
+		return this.graphics;		
 	}
+	
+	
+	
 	
 	//!TODO code
 	public void setPalette() 

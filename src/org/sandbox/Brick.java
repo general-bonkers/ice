@@ -85,9 +85,8 @@ public class Brick {
 		// Should set all variables to their default values and call Erase.
 	}
 	
-	public void DrawBrick(BufferStrategy bufferStrategy)
+	public void DrawBrick( Draw draw )
 	{
-		Draw draw = new org.ice.graphics.io.Draw( bufferStrategy );
 		
 		draw.box(screen_x, screen_y, width, height, color, true);
   	  	draw.box(screen_x + 1, screen_y + 1, width - 2, height - 2, color + 8, false);

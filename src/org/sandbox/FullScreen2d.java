@@ -69,13 +69,13 @@ public class FullScreen2d {
       while (!done()) {
     	  draw.cls( 0 );
     	  
-    	  b.DrawBrick(bufferStrategy);
+    	  b.DrawBrick( draw );
     	
-//    	  draw.line( counter - 1, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 2 );
-//    	  draw.line( counter - 1 +100, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 3  );
-//    	  draw.line( counter2 - 1 +300, (counter2 - 1) * 5, counter - 1, (counter - 1) * 5, 4  );
-//    	  draw.graphics().drawString( "TEST!", 1, 1 ); 
-//    	  draw.graphics().setColor(Color.RED);
+    	  draw.line( counter - 1, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 2 );
+    	  draw.line( counter - 1 +100, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 3  );
+    	  draw.line( counter2 - 1 +300, (counter2 - 1) * 5, counter - 1, (counter - 1) * 5, 4  );
+    	  draw.graphics().drawString( "TEST!", 1, 1 ); 
+    	  draw.graphics().setColor(Color.RED);
 			
     	  draw.graphics().setColor( Color.WHITE );
     	  draw.graphics().drawString( "Mouse: " + String.valueOf( mouse.getMouseX() ) + "|" + String.valueOf( mouse.getMouseY() ), 20, 20 );
