@@ -70,7 +70,7 @@ public class FullScreen2d {
              draw.graphics().setColor(Color.RED);
 
              draw.graphics().setColor( Color.WHITE );
-             draw.graphics().drawString( "Mouse: " + String.valueOf( mouse.getMouseX() ) + "|" + String.valueOf( mouse.getMouseX() ), 20, 20 );
+             draw.graphics().drawString( "Mouse: " + String.valueOf( mouse.getMouseX() ) + "|" + String.valueOf( mouse.getMouseY() ), 20, 20 );
 
              bufferStrategy.show();
           Thread.sleep(20);
