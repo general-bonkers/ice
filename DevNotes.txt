@@ -1,0 +1,52 @@
+-[Must Have]-----------------------------------------------------------------------------------------------
+ graphics
+ object classes (paddle ball brick)
+ engine
+ image sprites & backgrounds
+ playfield (borders or whatever)
+ font
+ level editor
+ levels!
+ collision engine
+ sound & music
+
+-[Nice to Have]-----------------------------------------------------------------------------------------------
+ doodads
+ bosses
+ turrets (slowly shoot one little bullet at a time at you.. may bounce off bricks not hurting
+          them, but destroys ball. these would have to aim and shoot slow, with not much accuracy)
+
+ allow users to import their own music into the game.
+
+ online download of level packs?
+ ^-- consider having system online where you can download & rate level packs from a server.
+     encouraging people to add levels.
+
+-[Music]-----------------------------------------------------------------------------------------------
+ - piano intro
+ - 90's style mod music with some ambient, some upbeat and other stuff
+ 
+
+-[Drop Types]-----------------------------------------------------------------------------------------------
+Drop Types:
+fat - bigger paddle
+skinny - smaller paddle
+stickybomb - ball bounces off wals sticks to brick and does area damage (not 100%)
+stickyball - sticks to paddle and allows you to more accurately place ball (click to launch)
+3 balls - adds 2 or 3 balls to however many you have now
+glasspaddle - your paddle has a chance to break until you switch to another drop
+1up - extra life
+
+-[Funky Level Ideas]-----------------------------------------------------------------------------------------------
+Funky Level Ideas:
+ - microsoft windows window?
+ - Smiley face
+ - floppy disk (5 1/4 outline only)
+ - musical note(s)
+ - mario face
+
+
+  
+-[Links to Music & Sounds:]-----------------------------------------------------------------------------------------------
+http://www.freesound.org/people/Setuniman/sounds/171085/ <-- not bad for intro
+ 
