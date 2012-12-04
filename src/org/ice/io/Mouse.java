@@ -23,7 +23,7 @@ public class Mouse {
 	
 	public MouseClick getMouseButton()
 	{
-		final int button = mouseDriver.getMouseButton();
+		int button = mouseDriver.getMouseButton();
 		
 	    switch(button) 
 		{
