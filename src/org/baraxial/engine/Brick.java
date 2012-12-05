@@ -19,13 +19,13 @@ public class Brick {
 	public int color = 0;				// Must be a value in the existing palette. 
 	public int strength = 1;			// 1 means the ball has to hit it just once to break this brick.  A value of 3 means the brick must be hit 3 times before this brick will break.
 	
-	public Type brickType = Type.Standard;		// Initial brick set to standard type.
+	public Type brickType = Type.Normal;		// Initial brick set to normal type.
 	
 	private Rectangle rectangle;        // Used for collision detection.
 	
 	public enum Type
 	{
-		Standard,		// standard break out style brick.
+		Normal,		    // normal break out style brick.
 		Stone,			// stone brick - will make your ball fragile and prone to breakage if hit with the ball.
 		Glass,			// glass brick - the brick will break and the ball will continue on its original course.
 		Steel;			// steel brick - this brick will never break no matter how many times it is hit by the ball.
@@ -33,7 +33,7 @@ public class Brick {
 	
 	public enum Status
 	{
-		StatusNotCurrentlySet,
+		Normal,
 		HorizontalScreenPositionBelowZero,
 		VerticalScreenPositionBelowZero,
 		HorizontalScreenPositionHigh,
@@ -84,7 +84,7 @@ public class Brick {
 		// do nothing for now.		
 	}
 	
-	// Brick's switch(status) block statement was complaining about the missing StatusNotCurrentlySet enum value missing
+	// Brick's switch(status) block statement was complaining about the missing Normal enum value missing
 	// from the case statement list.  So I added this SuppressWarnings - incomplete-switch to shut it up.
 	@SuppressWarnings("incomplete-switch")
 	public Brick(int screen_x, int screen_y, int width, int height, int color, int strength, Type brickType) throws Exception
@@ -99,7 +99,7 @@ public class Brick {
 					
 		Status status = Validate();
 		
-		if(status != Status.StatusNotCurrentlySet)
+		if(status != Status.Normal)
 		{
 			String message = "";
 			
@@ -147,7 +147,7 @@ public class Brick {
 		    	break;
 			}
 		    
-			throw new BaraxialEngineException(ExceptionType.brick, message);
+			throw new BaraxialEngineException(ExceptionType.Brick, message);
 		}
 		
 		// Moved Rectangle so it is created AFTER the validation.
@@ -158,7 +158,7 @@ public class Brick {
 	// and prevent errors from occurring later due to improper brick setup.
 	public Status Validate()
 	{
-		Status status = Status.StatusNotCurrentlySet;
+		Status status = Status.Normal;
 		
 		if(screen_x < 0 )
 		{

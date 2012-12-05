@@ -4,11 +4,16 @@ public class BaraxialEngineException extends Exception
 {
 	public enum ExceptionType
 	{
-		none,
-		ball,
-		brick,
-		paddle,
-		unexpected;
+		None,
+		Ball,
+		Brick,
+		Paddle,
+		PowerUp,
+		Rocket,
+		AlienCraft,
+		Boss,
+		Turret,
+		Unexpected;
 	}
 	
 	public ExceptionType ExceptionReason;

@@ -119,6 +119,9 @@ public class Paddle {
 		// Do Nothing
 	}
 	
+	// Paddle's switch(status) block statement was complaining about the missing Normal enum value missing
+	// from the case statement list.  So I added this SuppressWarnings - incomplete-switch to shut it up.
+	@SuppressWarnings("incomplete-switch")
 	public Paddle(int screen_x, int screen_y, int width, int height, int color, int strength, PaddleSpeed speed, PaddleStatus status)
 		throws Exception
 	{
@@ -208,7 +211,7 @@ public class Paddle {
 				break;
 			}
 			
-			throw new BaraxialEngineException(ExceptionType.paddle, message);
+			throw new BaraxialEngineException(ExceptionType.Paddle, message);
 		}
 
 		// Moved Rectangle so it is created AFTER the validation.

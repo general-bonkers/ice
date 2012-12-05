@@ -96,7 +96,7 @@ public static void main(String args[]) throws Exception {
     		  {
     			  color = 1;
     		  }
-    		  brick[columns + (rows * 14)] = new Brick(20 + columnWidth, 40 + rowWidth, 30, 10, color, 1, Type.Standard);
+    		  brick[columns + (rows * 14)] = new Brick(20 + columnWidth, 40 + rowWidth, 30, 10, color, 1, Type.Normal);
     		  
     		  //columnWidth = 0;
     		  rowWidth = rowWidth + 12;    		  
