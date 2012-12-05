@@ -3,6 +3,7 @@ package org.sandbox;
 import org.sandbox.IceEngineException.ExceptionType;
 import org.ice.graphics.io.Draw;
 import java.awt.Frame;
+import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 
 public class Brick {
@@ -18,6 +19,7 @@ public class Brick {
 	public int color = 0;				// Must be a value in the existing palette. 
 	public int strength = 1;			// 1 means the ball has to hit it just once to break this brick.  A value of 3 means the brick must be hit 3 times before this brick will break.
 	public Type brickType = Type.Standard;		// Initial brick set to standard type.
+	private Rectangle rectangle;        // Used for collision detection.
 	
 	public enum Type
 	{
@@ -105,7 +107,12 @@ public class Brick {
 	
 	public Brick()
 	{
-		// do nothing for now.
+		// do nothing for now.		
+	}
+	
+	public Rectangle getRectangle()
+	{
+		return this.rectangle;
 	}
 	
 	public Brick(int screen_x, int screen_y, int width, int height, int color, int strength, Type brickType) throws Exception
@@ -117,6 +124,8 @@ public class Brick {
 		this.color = color; 
 		this.strength = strength;
 		this.brickType = brickType;	
+		
+		rectangle = new Rectangle( screen_x, screen_y, width, height );
 		
 		Status status = Create();
 		
