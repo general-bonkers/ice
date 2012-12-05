@@ -1,5 +1,7 @@
 package org.baraxial.engine;
 
+import java.awt.Rectangle;
+
 import org.baraxial.engine.BaraxialEngineException.ExceptionType;
 import org.ice.graphics.io.Draw;
 
@@ -26,7 +28,9 @@ public class Paddle {
 	
 	public PaddleSpeed speed = PaddleSpeed.Normal;			// Hope like hell you don't get the slow speed one when the ball speed is set to Very Fast lol.	
 	public PaddleStatus status = PaddleStatus.Normal;		// No advantages or disadvantages.
-			
+
+	private Rectangle rectangle;                            // Used for collision detection.
+	
 	public enum PaddleStatus
 	{
 		Normal,
@@ -67,6 +71,152 @@ public class Paddle {
 		Fast
 	}
 
+	public void DrawPaddle(Draw draw)
+	{
+		//I think screen_x and screen_y need to go away and us keep current_ [x|y]. No need for both.
+		//screen_x = current_x;
+		//screen_y = current_y;
+		
+		if(screen_x + width >= 639)		// might not need this if we setup mouse bounds in FullScreen2d.java
+		{
+			screen_x = 639 - width;
+		}
+		
+		draw.box(screen_x, screen_y, width, height, color, true);
+  	  	draw.box(screen_x + 1, screen_y + 1, width - 2, height - 2, color + 8, false);
+  	  	draw.box(screen_x, screen_y, width, height, color + 8, false);		
+	}
+		
+	public void Hit(int damage)
+	{
+		this.strength = this.strength - damage;
+		
+		if(this.strength <= 0)
+		{
+			Destroy();
+		}
+		else
+		{
+			// TODO:  Play sound to indicate the paddle is damaged but not destroyed.
+		}		
+	}
+
+	public void Destroy()
+	{
+		// TODO: Implementation needed.
+		// Should set all variables to their default values.
+		// TODO: Play sound to indicate paddle is destroyed.
+		// Reduce player ball count by one.
+	}
+
+	public Rectangle getRectangle()
+	{
+		return this.rectangle;
+	}
+	
+	public Paddle()
+	{
+		// Do Nothing
+	}
+	
+	public Paddle(int screen_x, int screen_y, int width, int height, int color, int strength, PaddleSpeed speed, PaddleStatus status)
+		throws Exception
+	{
+		this.screen_x = screen_x;
+		this.screen_y = screen_y;
+		this.width = width;
+		this.height = height;
+		this.color = color;
+		this.strength = strength;
+		this.speed = speed;
+		this.status = status;
+	
+		PaddleValidationStatus valid = Validate();
+		
+		SetMinMaxXY();		// Auto-Initialize the Min/Max XY values.
+							// The developer can call the overloaded SetMinMaxXY(X, Y, X2, Y2) routine to fine tune values.
+		
+		if(valid != PaddleValidationStatus.Normal)
+		{
+			String message = "";
+			
+			switch(valid)
+			{
+				case HorizontalScreenPositionlow:
+					message = "Horizontal screen position to low.";
+					break;
+					
+				case VerticalScreenPositionLow:
+					message = "Vertical screen position to low.";
+					break;
+					
+				case HorizontalScreenPositonHigh:
+					message = "Horizontal screen position to high.";
+					break;
+					
+				case VerticalScreenPositionHigh:
+					message = "Vertical screen position to high.";
+					break;
+					
+				case HorizontalCurrentPositionlow:
+					message = "Horizontal current position to low.";
+					break;
+					
+				case VerticalCurrentPositionLow:
+					message = "Vertical current position to low.";
+					break;
+					
+				case HorizontalCurrentPositonHigh:
+					message = "Horizontal current position to high.";
+					break;
+					
+				case VerticalCurrentPositionHigh:
+					message = "Vertical current positioin to high.";
+					break;
+					
+				case ColorValueLow:
+					message = "Color value to low.";
+					break;
+					
+				case ColorValueHigh:
+					message = "Color value to high.";
+					break;
+					
+				case WidthLow:
+					message = "Width to low.";
+					break;
+					
+				case WidthHigh:
+					message = "Width to high.";
+					break;
+					
+				case HeightLow:
+					message = "Height to low.";
+					break;
+					
+				case HeightHigh:
+					message = "Height to high.";
+					break;
+					
+				case StrengthLow:
+					message = "Strength to low.";
+					break;
+					
+				case StrengthHigh:
+					message = "Strength to high.";
+					
+				break;
+			}
+			
+			throw new BaraxialEngineException(ExceptionType.paddle, message);
+		}
+
+		// Moved Rectangle so it is created AFTER the validation.
+		rectangle = new Rectangle(screen_x, screen_y, width, height);		
+	}
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// The following three routines are paddle variable attribute validation routines.
 	// Validate and then set if needed the min/max xy of the paddle.
 	public void SetMinMaxXY()
 	{
@@ -212,135 +362,4 @@ public class Paddle {
 		return valid;
 	}
 	
-	public void DrawPaddle(Draw draw)
-	{
-		//I think screen_x and screen_y need to go away and us keep current_ [x|y]. No need for both.
-		//screen_x = current_x;
-		//screen_y = current_y;
-		
-		if(screen_x + width >= 639)		// might not need this if we setup mouse bounds in FullScreen2d.java
-		{
-			screen_x = 639 - width;
-		}
-		
-		draw.box(screen_x, screen_y, width, height, color, true);
-  	  	draw.box(screen_x + 1, screen_y + 1, width - 2, height - 2, color + 8, false);
-  	  	draw.box(screen_x, screen_y, width, height, color + 8, false);		
-	}
-	
-	public void Destroy()
-	{
-		// Implementation needed.
-		// Should set all variables to their default values.
-	}
-	
-	public void Hit(int damage)
-	{
-		this.strength = this.strength - damage;
-		
-		if(this.strength <= 0)
-		{
-			Destroy();
-		}
-		
-	}
-	
-	public Paddle()
-	{
-		// Do Nothing
-	}
-	
-	public Paddle(int screen_x, int screen_y, int width, int height, int color, int strength, PaddleSpeed speed, PaddleStatus status)
-		throws Exception
-	{
-		this.screen_x = screen_x;
-		this.screen_y = screen_y;
-		this.width = width;
-		this.height = height;
-		this.color = color;
-		this.strength = strength;
-		this.speed = speed;
-		this.status = status;
-	
-		PaddleValidationStatus valid = Validate();
-		
-		SetMinMaxXY();		// Auto-Initialize the Min/Max XY values.
-							// The developer can call the overloaded SetMinMaxXY(X, Y, X2, Y2) routine to fine tune values.
-		
-		if(valid != PaddleValidationStatus.Normal)
-		{
-			String message = "";
-			
-			switch(valid)
-			{
-				case HorizontalScreenPositionlow:
-					message = "Horizontal screen position to low.";
-					break;
-					
-				case VerticalScreenPositionLow:
-					message = "Vertical screen position to low.";
-					break;
-					
-				case HorizontalScreenPositonHigh:
-					message = "Horizontal screen position to high.";
-					break;
-					
-				case VerticalScreenPositionHigh:
-					message = "Vertical screen position to high.";
-					break;
-					
-				case HorizontalCurrentPositionlow:
-					message = "Horizontal current position to low.";
-					break;
-					
-				case VerticalCurrentPositionLow:
-					message = "Vertical current position to low.";
-					break;
-					
-				case HorizontalCurrentPositonHigh:
-					message = "Horizontal current position to high.";
-					break;
-					
-				case VerticalCurrentPositionHigh:
-					message = "Vertical current positioin to high.";
-					break;
-					
-				case ColorValueLow:
-					message = "Color value to low.";
-					break;
-					
-				case ColorValueHigh:
-					message = "Color value to high.";
-					break;
-					
-				case WidthLow:
-					message = "Width to low.";
-					break;
-					
-				case WidthHigh:
-					message = "Width to high.";
-					break;
-					
-				case HeightLow:
-					message = "Height to low.";
-					break;
-					
-				case HeightHigh:
-					message = "Height to high.";
-					break;
-					
-				case StrengthLow:
-					message = "Strength to low.";
-					break;
-					
-				case StrengthHigh:
-					message = "Strength to high.";
-					
-				break;
-			}
-			
-			throw new BaraxialEngineException(ExceptionType.paddle, message);
-		}
-		
-	}
 }

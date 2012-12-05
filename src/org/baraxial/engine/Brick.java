@@ -9,7 +9,7 @@ import java.awt.image.BufferStrategy;
 public class Brick {
 
 	/*
-	 * The Draw, Erase and Destroy brick routines need to be implemented.
+	 * The Destroy brick routine need to be implemented.
 	 */
 		
 	public int screen_x = 0;			// indicates the horizontal start of the left corner of the brick.
@@ -18,7 +18,9 @@ public class Brick {
 	public int width = 0;				// indicates the width of the brick.
 	public int color = 0;				// Must be a value in the existing palette. 
 	public int strength = 1;			// 1 means the ball has to hit it just once to break this brick.  A value of 3 means the brick must be hit 3 times before this brick will break.
+	
 	public Type brickType = Type.Standard;		// Initial brick set to standard type.
+	
 	private Rectangle rectangle;        // Used for collision detection.
 	
 	public enum Type
@@ -34,6 +36,8 @@ public class Brick {
 		StatusNotCurrentlySet,
 		HorizontalScreenPositionBelowZero,
 		VerticalScreenPositionBelowZero,
+		HorizontalScreenPositionHigh,
+		VerticalScreenPositionBeHigh,
 		ColorValueBelowZero,
 		ColorValueAbove255,
 		StrengthBelowZero,
@@ -42,72 +46,32 @@ public class Brick {
 		StrengthEquals10AndEitherIsStoneOrIsSteelMustBeSetTo10;
 	}
 	
-	// This function should ensure game rules are followed at all times
-	// and prevent errors from occurring later due to improper brick setup.
-	public Status Create()
-	{
-		Status status = Status.StatusNotCurrentlySet;
-		
-		if(screen_x < 0 )
-		{
-			status = Status.HorizontalScreenPositionBelowZero;
-		}
-		
-		if(screen_y < 0 )
-		{
-			status = Status.VerticalScreenPositionBelowZero;
-		}
-		
-		if(color < 0)
-		{
-			status = Status.ColorValueBelowZero;
-		}
-		
-		if(color > 255)
-		{
-			status = Status.ColorValueAbove255;
-		}
-		
-		if(strength < 0)
-		{
-			status = Status.StrengthBelowZero;
-		}
-		
-		if(strength > 10)
-		{
-			status = Status.StrengthAbove10;
-		}		
-		
-		return status;
-	}
-	
-	public void Destroy()
-	{
-		// Implementation Needed.
-		// Should set all variables to their default values and call Erase.
-	}
-	
-	public void DrawBrick( Draw draw )
-	{
-		
+	public void DrawBrick(Draw draw)
+	{		
 		draw.box(screen_x, screen_y, width, height, color, true);
   	  	draw.box(screen_x + 1, screen_y + 1, width - 2, height - 2, color + 8, false);
   	  	draw.box(screen_x, screen_y, width, height, color + 8, false);
 	}
 	
-	public void Hit()
+	public void Hit(int damage)
 	{
-		strength = strength - 1;
+		strength = strength - damage;
 		
 		if(strength <= 0)
 		{
 			Destroy();
 		}
+		else
+		{
+			// TODO: Play sound to indicate block is hit but not destroyed.
+		}
 	}
 	
-	public Brick()
+	public void Destroy()
 	{
-		// do nothing for now.		
+		// TODO: Implementation Needed.
+		// Should set all variables to their default values and call Erase.
+		// TODO: Play sound to indicate block is destroyed.
 	}
 	
 	public Rectangle getRectangle()
@@ -115,6 +79,14 @@ public class Brick {
 		return this.rectangle;
 	}
 	
+	public Brick()
+	{
+		// do nothing for now.		
+	}
+	
+	// Brick's switch(status) block statement was complaining about the missing StatusNotCurrentlySet enum value missing
+	// from the case statement list.  So I added this SuppressWarnings - incomplete-switch to shut it up.
+	@SuppressWarnings("incomplete-switch")
 	public Brick(int screen_x, int screen_y, int width, int height, int color, int strength, Type brickType) throws Exception
 	{
 		this.screen_x = screen_x;
@@ -124,10 +96,8 @@ public class Brick {
 		this.color = color; 
 		this.strength = strength;
 		this.brickType = brickType;	
-		
-		rectangle = new Rectangle( screen_x, screen_y, width, height );
-		
-		Status status = Create();
+					
+		Status status = Validate();
 		
 		if(status != Status.StatusNotCurrentlySet)
 		{
@@ -141,6 +111,14 @@ public class Brick {
 		    		
 		    	case VerticalScreenPositionBelowZero:
 		    		message = "Vertical screen position below zero.";
+		    		break;
+
+		    	case HorizontalScreenPositionHigh:
+		    		message = "Horizontal screen position to high.";
+		    		break;
+		    		
+		    	case VerticalScreenPositionBeHigh:
+		    		message = "Vertical screen position to high.";
 		    		break;
 		    		
 		    	case ColorValueBelowZero:
@@ -171,5 +149,57 @@ public class Brick {
 		    
 			throw new BaraxialEngineException(ExceptionType.brick, message);
 		}
+		
+		// Moved Rectangle so it is created AFTER the validation.
+		rectangle = new Rectangle(screen_x, screen_y, width, height);
 	}
+	
+	// This function should ensure game rules are followed at all times
+	// and prevent errors from occurring later due to improper brick setup.
+	public Status Validate()
+	{
+		Status status = Status.StatusNotCurrentlySet;
+		
+		if(screen_x < 0 )
+		{
+			status = Status.HorizontalScreenPositionBelowZero;
+		}
+		
+		if(screen_y < 0 )
+		{
+			status = Status.VerticalScreenPositionBelowZero;
+		}
+
+		if(screen_x > 639 - width)
+		{
+			status = Status.HorizontalScreenPositionHigh;
+		}
+		
+		if(screen_y > 479 - height)
+		{
+			status = Status.VerticalScreenPositionBeHigh;
+		}
+		
+		if(color < 0)
+		{
+			status = Status.ColorValueBelowZero;
+		}
+		
+		if(color > 255)
+		{
+			status = Status.ColorValueAbove255;
+		}
+		
+		if(strength < 0)
+		{
+			status = Status.StrengthBelowZero;
+		}
+		
+		if(strength > 10)
+		{
+			status = Status.StrengthAbove10;
+		}		
+		
+		return status;
+	}	
 }
