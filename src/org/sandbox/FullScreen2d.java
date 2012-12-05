@@ -64,14 +64,14 @@ public static void main(String args[]) throws Exception {
       BufferStrategy bufferStrategy = frame.getBufferStrategy();
       Draw draw = new org.ice.graphics.io.Draw( bufferStrategy );
 
-      Brick b[] = new Brick[14 * 22];
+      Brick b[] = new Brick[14 * 21];
       
       int columnWidth = 0;
       int rowWidth = 0;
       
       for(int columns = 0; columns < 14; columns++)
       {
-    	  for(int rows = 0; rows < 22; rows++)
+    	  for(int rows = 0; rows < 21; rows++)
     	  {
     		  double rndColor = Math.random();
     		  int color = 0;
@@ -115,7 +115,7 @@ public static void main(String args[]) throws Exception {
 
           for(int columns = 0; columns < 14; columns++)
           {
-        	  for(int rows = 0; rows < 22; rows++)
+        	  for(int rows = 0; rows < 21; rows++)
         	  {
         		  b[columns + (rows * 14)].DrawBrick( draw );       		  
         	  }
