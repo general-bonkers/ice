@@ -1,7 +1,6 @@
 package org.baraxial.engine;
 
-import org.sandbox.IceEngineException;
-import org.sandbox.IceEngineException.ExceptionType;
+import org.baraxial.engine.BaraxialEngineException.ExceptionType;
 import org.ice.graphics.io.Draw;
 import java.awt.Frame;
 import java.awt.Rectangle;
@@ -170,7 +169,7 @@ public class Brick {
 		    	break;
 			}
 		    
-			throw new IceEngineException(ExceptionType.brick, message);
+			throw new BaraxialEngineException(ExceptionType.brick, message);
 		}
 	}
 }

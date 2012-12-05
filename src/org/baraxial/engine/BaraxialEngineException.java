@@ -1,6 +1,6 @@
-package org.sandbox;
+package org.baraxial.engine;
 
-public class IceEngineException extends Exception
+public class BaraxialEngineException extends Exception
 {
 	public enum ExceptionType
 	{
@@ -13,7 +13,7 @@ public class IceEngineException extends Exception
 	
 	public ExceptionType ExceptionReason;
 	
-	public IceEngineException(ExceptionType type, String message)
+	public BaraxialEngineException(ExceptionType type, String message)
 	{
 		super(message);
 		ExceptionReason = type;

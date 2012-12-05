@@ -1,7 +1,6 @@
 package org.baraxial.engine;
 
-import org.sandbox.IceEngineException;
-import org.sandbox.IceEngineException.ExceptionType;
+import org.baraxial.engine.BaraxialEngineException.ExceptionType;
 import org.ice.graphics.io.Draw;
 
 public class Paddle {
@@ -340,7 +339,7 @@ public class Paddle {
 				break;
 			}
 			
-			throw new IceEngineException(ExceptionType.paddle, message);
+			throw new BaraxialEngineException(ExceptionType.paddle, message);
 		}
 		
 	}

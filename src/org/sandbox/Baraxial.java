@@ -17,7 +17,7 @@ import org.baraxial.engine.Paddle.PaddleStatus;
 import org.ice.graphics.io.Draw;
 import org.ice.io.Mouse;
 
-public class FullScreen2d {
+public class Baraxial {
 
   private static int counter = 0;
   private static int counter2 = 100;
