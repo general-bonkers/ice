@@ -3,14 +3,11 @@ package org.baraxial.engine;
 import java.awt.Rectangle;
 
 import org.baraxial.engine.BaraxialEngineException.ExceptionType;
+import org.ice.graphics.SpriteObject;
 import org.ice.graphics.io.Draw;
 
-public class Paddle {
+public class Paddle extends SpriteObject {
 
-	public int screen_x = 0;		// starting x,y of the paddle after level start, or ball drop.
-	public int screen_y = 0;
-	public int height = 0;
-	public int width = 0;
 	public int color = 0;
 	
 	public int strength = 100;		// 100 indicates that the paddle will not break when hit by the ball no matter
@@ -82,6 +79,9 @@ public class Paddle {
 			screen_x = 639 - width;
 		}
 		
+		// Update rectangle status
+		this.rectangle.setLocation( screen_x, screen_y );
+		
 		draw.box(screen_x, screen_y, width, height, color, true);
   	  	draw.box(screen_x + 1, screen_y + 1, width - 2, height - 2, color + 8, false);
   	  	draw.box(screen_x, screen_y, width, height, color + 8, false);		
@@ -109,11 +109,6 @@ public class Paddle {
 		// Reduce player ball count by one.
 	}
 
-	public Rectangle getRectangle()
-	{
-		return this.rectangle;
-	}
-	
 	public Paddle()
 	{
 		// Do Nothing

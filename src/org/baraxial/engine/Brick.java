@@ -1,19 +1,16 @@
 package org.baraxial.engine;
 
 import org.baraxial.engine.BaraxialEngineException.ExceptionType;
+import org.ice.graphics.SpriteObject;
 import org.ice.graphics.io.Draw;
 import java.awt.Rectangle;
 
-public class Brick {
+public class Brick extends SpriteObject {
 
 	/*
 	 * The Destroy brick routine need to be implemented.
 	 */
 		
-	public int screen_x = 0;			// indicates the horizontal start of the left corner of the brick.
-	public int screen_y = 0;			// indicates the vertical start of the left corner of the brick.
-	public int height = 0;				// indicates the height of the brick.
-	public int width = 0;				// indicates the width of the brick.
 	public int color = 0;				// Must be a value in the existing palette. 
 	public int strength = 1;			// 1 means the ball has to hit it just once to break this brick.  A value of 3 means the brick must be hit 3 times before this brick will break.
 	
@@ -70,11 +67,6 @@ public class Brick {
 		// TODO: Implementation Needed.
 		// Should set all variables to their default values and call Erase.
 		// TODO: Play sound to indicate block is destroyed.
-	}
-	
-	public Rectangle getRectangle()
-	{
-		return this.rectangle;
 	}
 	
 	public Brick()
