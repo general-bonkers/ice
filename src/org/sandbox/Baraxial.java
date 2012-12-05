@@ -133,7 +133,7 @@ public static void main(String args[]) throws Exception {
         	  }
           }
 
-          paddle.screen_x = mouse.getMouseX();
+          paddle.current_x = mouse.getMouseX();
           //paddle.screen_y = mouse.getMouseY();		// This would allow the paddle to move up or down as well.
           
           paddle.DrawPaddle(draw);

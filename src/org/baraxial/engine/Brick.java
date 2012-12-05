@@ -29,10 +29,10 @@ public class Brick extends SpriteObject {
 	public enum Status
 	{
 		Normal,
-		HorizontalScreenPositionBelowZero,
-		VerticalScreenPositionBelowZero,
-		HorizontalScreenPositionHigh,
-		VerticalScreenPositionBeHigh,
+		HorizontalCurrentPositionBelowZero,
+		VerticalCurrentPositionBelowZero,
+		HorizontalCurrentPositionHigh,
+		VerticalCurrentPositionBeHigh,
 		ColorValueBelowZero,
 		ColorValueAbove255,
 		StrengthBelowZero,
@@ -43,9 +43,9 @@ public class Brick extends SpriteObject {
 	
 	public void DrawBrick(Draw draw)
 	{		
-		draw.box(screen_x, screen_y, width, height, color, true);
-  	  	draw.box(screen_x + 1, screen_y + 1, width - 2, height - 2, color + 8, false);
-  	  	draw.box(screen_x, screen_y, width, height, color + 8, false);
+		draw.box(current_x, current_y, width, height, color, true);
+  	  	draw.box(current_x + 1, current_y + 1, width - 2, height - 2, color + 8, false);
+  	  	draw.box(current_x, current_y, width, height, color + 8, false);
 	}
 	
 	public void Hit(int damage)
@@ -77,10 +77,11 @@ public class Brick extends SpriteObject {
 	// Brick's switch(status) block statement was complaining about the missing Normal enum value missing
 	// from the case statement list.  So I added this SuppressWarnings - incomplete-switch to shut it up.
 	@SuppressWarnings("incomplete-switch")
-	public Brick(int screen_x, int screen_y, int width, int height, int color, int strength, Type brickType) throws Exception
+	public Brick(int current_x, int current_y, int width, int height, int color, int strength, Type brickType) 
+			throws Exception
 	{
-		this.screen_x = screen_x;
-		this.screen_y = screen_y;
+		this.current_x = current_x;
+		this.current_y = current_y;
 		this.height = height;
 		this.width = width;
 		this.color = color; 
@@ -95,19 +96,19 @@ public class Brick extends SpriteObject {
 			
 		    switch(status) 
 			{
-		    	case HorizontalScreenPositionBelowZero:
+		    	case HorizontalCurrentPositionBelowZero:
 		    		message = "Horizontal screen position below zero.";
 		    		break;
 		    		
-		    	case VerticalScreenPositionBelowZero:
+		    	case VerticalCurrentPositionBelowZero:
 		    		message = "Vertical screen position below zero.";
 		    		break;
 
-		    	case HorizontalScreenPositionHigh:
+		    	case HorizontalCurrentPositionHigh:
 		    		message = "Horizontal screen position to high.";
 		    		break;
 		    		
-		    	case VerticalScreenPositionBeHigh:
+		    	case VerticalCurrentPositionBeHigh:
 		    		message = "Vertical screen position to high.";
 		    		break;
 		    		
@@ -141,7 +142,7 @@ public class Brick extends SpriteObject {
 		}
 		
 		// Moved Rectangle so it is created AFTER the validation.
-		rectangle = new Rectangle(screen_x, screen_y, width, height);
+		rectangle = new Rectangle(current_x, current_y, width, height);
 	}
 	
 	// This function should ensure game rules are followed at all times
@@ -150,24 +151,24 @@ public class Brick extends SpriteObject {
 	{
 		Status status = Status.Normal;
 		
-		if(screen_x < 0 )
+		if(current_x < 0 )
 		{
-			status = Status.HorizontalScreenPositionBelowZero;
+			status = Status.HorizontalCurrentPositionBelowZero;
 		}
 		
-		if(screen_y < 0 )
+		if(current_y < 0 )
 		{
-			status = Status.VerticalScreenPositionBelowZero;
+			status = Status.VerticalCurrentPositionBelowZero;
 		}
 
-		if(screen_x > 639 - width)
+		if(current_x > 639 - width)
 		{
-			status = Status.HorizontalScreenPositionHigh;
+			status = Status.HorizontalCurrentPositionHigh;
 		}
 		
-		if(screen_y > 479 - height)
+		if(current_y > 479 - height)
 		{
-			status = Status.VerticalScreenPositionBeHigh;
+			status = Status.VerticalCurrentPositionBeHigh;
 		}
 		
 		if(color < 0)

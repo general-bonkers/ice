@@ -20,9 +20,6 @@ public class Paddle extends SpriteObject {
 	public int max_x = 0;			// touch or attempt to cross these values.
 	public int max_y = 0;
 	
-	public int current_x = 0;		// The current x, y location of the upper left corner of the paddle.
-	public int current_y = 0;		// Useful for collision detection.
-	
 	public PaddleSpeed speed = PaddleSpeed.Normal;			// Hope like hell you don't get the slow speed one when the ball speed is set to Very Fast lol.	
 	public PaddleStatus status = PaddleStatus.Normal;		// No advantages or disadvantages.
 
@@ -43,10 +40,6 @@ public class Paddle extends SpriteObject {
 	public enum PaddleValidationStatus
 	{
 		Normal,
-		HorizontalScreenPositionlow,
-		VerticalScreenPositionLow,
-		HorizontalScreenPositonHigh,
-		VerticalScreenPositionHigh,
 		HorizontalCurrentPositionlow,
 		VerticalCurrentPositionLow,
 		HorizontalCurrentPositonHigh,
@@ -74,17 +67,17 @@ public class Paddle extends SpriteObject {
 		//screen_x = current_x;
 		//screen_y = current_y;
 		
-		if(screen_x + width >= 639)		// might not need this if we setup mouse bounds in FullScreen2d.java
+		if(current_x + width >= 639)		// might not need this if we setup mouse bounds in FullScreen2d.java
 		{
-			screen_x = 639 - width;
+			current_x = 639 - width;
 		}
 		
 		// Update rectangle status
-		this.rectangle.setLocation( screen_x, screen_y );
+		this.rectangle.setLocation( current_x, current_y );
 		
-		draw.box(screen_x, screen_y, width, height, color, true);
-  	  	draw.box(screen_x + 1, screen_y + 1, width - 2, height - 2, color + 8, false);
-  	  	draw.box(screen_x, screen_y, width, height, color + 8, false);		
+		draw.box(current_x, current_y, width, height, color, true);
+  	  	draw.box(current_x + 1, current_y + 1, width - 2, height - 2, color + 8, false);
+  	  	draw.box(current_x, current_y, width, height, color + 8, false);		
 	}
 		
 	public void Hit(int damage)
@@ -117,11 +110,11 @@ public class Paddle extends SpriteObject {
 	// Paddle's switch(status) block statement was complaining about the missing Normal enum value missing
 	// from the case statement list.  So I added this SuppressWarnings - incomplete-switch to shut it up.
 	@SuppressWarnings("incomplete-switch")
-	public Paddle(int screen_x, int screen_y, int width, int height, int color, int strength, PaddleSpeed speed, PaddleStatus status)
+	public Paddle(int current_x, int current_y, int width, int height, int color, int strength, PaddleSpeed speed, PaddleStatus status)
 		throws Exception
 	{
-		this.screen_x = screen_x;
-		this.screen_y = screen_y;
+		this.current_x = current_x;
+		this.current_y = current_y;
 		this.width = width;
 		this.height = height;
 		this.color = color;
@@ -140,22 +133,6 @@ public class Paddle extends SpriteObject {
 			
 			switch(valid)
 			{
-				case HorizontalScreenPositionlow:
-					message = "Horizontal screen position to low.";
-					break;
-					
-				case VerticalScreenPositionLow:
-					message = "Vertical screen position to low.";
-					break;
-					
-				case HorizontalScreenPositonHigh:
-					message = "Horizontal screen position to high.";
-					break;
-					
-				case VerticalScreenPositionHigh:
-					message = "Vertical screen position to high.";
-					break;
-					
 				case HorizontalCurrentPositionlow:
 					message = "Horizontal current position to low.";
 					break;
@@ -210,7 +187,7 @@ public class Paddle extends SpriteObject {
 		}
 
 		// Moved Rectangle so it is created AFTER the validation.
-		rectangle = new Rectangle(screen_x, screen_y, width, height);		
+		rectangle = new Rectangle(current_x, current_y, width, height);		
 	}
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -289,12 +266,12 @@ public class Paddle extends SpriteObject {
 	{
 		PaddleValidationStatus valid = PaddleValidationStatus.Normal;
 		
-		if(this.screen_x < 0)
+		if(this.current_x < 0)
 		{
-			valid = PaddleValidationStatus.HorizontalScreenPositionlow;
+			valid = PaddleValidationStatus.HorizontalCurrentPositionlow;
 		}
 			
-		if(this.screen_y < 0)
+		if(this.current_y < 0)
 		{
 			valid = PaddleValidationStatus.VerticalCurrentPositionLow;
 		}
@@ -324,17 +301,17 @@ public class Paddle extends SpriteObject {
 		
 		int absoluteMaxScreenX = 639 - this.width;
 		int absoluteMaxScreenY = 479 - this.height;
-		int absoluteMaxWidth = 679 - this.screen_x;
-		int absoluteMaxHeight = 479 - this.screen_y;
+		int absoluteMaxWidth = 679 - this.current_x;
+		int absoluteMaxHeight = 479 - this.current_y;
 		
-		if(this.screen_x > absoluteMaxScreenX)
+		if(this.current_x > absoluteMaxScreenX)
 		{
-			valid = PaddleValidationStatus.HorizontalScreenPositonHigh;
+			valid = PaddleValidationStatus.HorizontalCurrentPositonHigh;
 		}
 			
-		if(this.screen_y > absoluteMaxScreenY)
+		if(this.current_y > absoluteMaxScreenY)
 		{
-			valid = PaddleValidationStatus.VerticalScreenPositionHigh;
+			valid = PaddleValidationStatus.VerticalCurrentPositionHigh;
 		}
 		
 		if(this.width > absoluteMaxWidth)

@@ -131,9 +131,9 @@ public class BallTest {
 
     		  if ( ballRect.intersects( bricks[i].getRectangle() ) )
     		  {
-    			  if ( bricks[i].screen_y >= ball.y && bricks[i].screen_x >= ball.x )
+    			  if ( bricks[i].current_y >= ball.y && bricks[i].current_x >= ball.x )
     			  {
-    				  if ( bricks[i].screen_y - ball.y > bricks[i].screen_x - ball.x && ball.vx > 0 )
+    				  if ( bricks[i].current_y - ball.y > bricks[i].current_x - ball.x && ball.vx > 0 )
     				  {
     					  ball.vy = -ball.vy;    					  
     				  }
@@ -143,9 +143,9 @@ public class BallTest {
     				  }
     			  }
     		    
-	    		  else if ( bricks[i].screen_y >= ball.y && bricks[i].screen_x <= ball.x )
+	    		  else if ( bricks[i].current_y >= ball.y && bricks[i].current_x <= ball.x )
 	    		  {
-	    			  if ( bricks[i].screen_y - ball.y > bricks[i].screen_x - ball.x && ball.vx > 0 )
+	    			  if ( bricks[i].current_y - ball.y > bricks[i].current_x - ball.x && ball.vx > 0 )
 	    			  {
 	    				  ball.vy = -ball.vy;    					  
     				  }
@@ -155,9 +155,9 @@ public class BallTest {
     				  }
 				  }
 
-    		      else if ( bricks[i].screen_y <= ball.y && bricks[i].screen_x >= ball.x )
+    		      else if ( bricks[i].current_y <= ball.y && bricks[i].current_x >= ball.x )
 			      {
-					  if ( bricks[i].screen_y - ball.y > bricks[i].screen_x - ball.x && ball.vx < 0 )
+					  if ( bricks[i].current_y - ball.y > bricks[i].current_x - ball.x && ball.vx < 0 )
 					  {
 						  ball.vy = -ball.vy;    					  
 					  }
@@ -167,9 +167,9 @@ public class BallTest {
 					  }
 			      }
 		    
-				  else if ( bricks[i].screen_y <= ball.y && bricks[i].screen_x <= ball.x )
+				  else if ( bricks[i].current_y <= ball.y && bricks[i].current_x <= ball.x )
 				  {
-					  if ( bricks[i].screen_y - ball.y > bricks[i].screen_x - ball.x && ball.vx < 0 )
+					  if ( bricks[i].current_y - ball.y > bricks[i].current_x - ball.x && ball.vx < 0 )
 					  {
 						  ball.vy = -ball.vy;    					  
 					  }
