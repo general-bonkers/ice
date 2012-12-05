@@ -7,11 +7,15 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferStrategy;
 
+import org.baraxial.engine.Ball;
 import org.baraxial.engine.Brick;
 import org.baraxial.engine.Paddle;
+import org.baraxial.engine.Ball.BallSpeed;
+import org.baraxial.engine.Ball.BallStatus;
 import org.baraxial.engine.Brick.Type;
 import org.baraxial.engine.Paddle.PaddleSpeed;
 import org.baraxial.engine.Paddle.PaddleStatus;
+import org.ice.graphics.CollisionHandler;
 import org.ice.graphics.io.Draw;
 import org.ice.io.Mouse;
 
@@ -106,16 +110,32 @@ public static void main(String args[]) throws Exception {
       // Paddle Initialization
       //////////////////////////
       Paddle paddle;
-      
       //                    x,   y,  w,  h, c,   s,              Speed,              Status
       paddle = new Paddle(320, 420, 45, 10, 6, 100, PaddleSpeed.Normal, PaddleStatus.Normal);
       
+      Ball ball;
       
+      ball = new Ball(200, 400, 10, 10, 7, 100, BallSpeed.Normal, BallStatus.Normal);
+      
+      CollisionHandler collisionHandler = new CollisionHandler();
+      
+      // Add bricks
+      for ( int i = 0; i < brick.length; i++ )
+      {
+    	  collisionHandler.addSpriteObject( brick[i] );
+      }
+      
+      // Add rest of items
+      collisionHandler.addSpriteObject( paddle );
+      collisionHandler.addSpriteObject( ball );
       
             
       while (!done()) {
     	  draw.cls( 0 );
          
+    	  // check for collisions:
+    	  collisionHandler.checkCollision();
+    	  
     	  draw.line( counter - 1, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 2 );
     	  draw.line( counter - 1 +100, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 3  );
     	  draw.line( counter2 - 1 +300, (counter2 - 1) * 5, counter - 1, (counter - 1) * 5, 4  );
@@ -137,6 +157,7 @@ public static void main(String args[]) throws Exception {
           //paddle.screen_y = mouse.getMouseY();		// This would allow the paddle to move up or down as well.
           
           paddle.DrawPaddle(draw);
+          ball.DrawBall( draw );
           
     	  bufferStrategy.show();
     	  Thread.sleep(16);
