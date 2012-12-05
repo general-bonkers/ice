@@ -64,14 +64,14 @@ public static void main(String args[]) throws Exception {
       BufferStrategy bufferStrategy = frame.getBufferStrategy();
       Draw draw = new org.ice.graphics.io.Draw( bufferStrategy );
 
-      Brick b[] = new Brick[14 * 16];
+      Brick b[] = new Brick[14 * 22];
       
       int columnWidth = 0;
       int rowWidth = 0;
       
-      for(int columns = 0; columns <= 13; columns++)
+      for(int columns = 0; columns < 14; columns++)
       {
-    	  for(int rows = 0; rows <= 15; rows++)
+    	  for(int rows = 0; rows < 22; rows++)
     	  {
     		  double rndColor = Math.random();
     		  int color = 0;
@@ -91,7 +91,7 @@ public static void main(String args[]) throws Exception {
     		  {
     			  color = 1;
     		  }
-    		  b[columns + (rows * 14)] = new Brick(80 + columnWidth, 80 + rowWidth, 32, 12, color, 1, Type.Standard);
+    		  b[columns + (rows * 14)] = new Brick(20 + columnWidth, 40 + rowWidth, 32, 12, color, 1, Type.Standard);
     		  
     		  //columnWidth = 0;
     		  rowWidth = rowWidth + 14;    		  
@@ -113,9 +113,9 @@ public static void main(String args[]) throws Exception {
     	  draw.graphics().setColor( Color.WHITE );
     	  draw.graphics().drawString( "Mouse: " + String.valueOf( mouse.getMouseX() ) + "|" + String.valueOf( mouse.getMouseY() ), 20, 20 );
 
-          for(int columns = 0; columns <= 13; columns++)
+          for(int columns = 0; columns < 14; columns++)
           {
-        	  for(int rows = 0; rows <= 15; rows++)
+        	  for(int rows = 0; rows < 22; rows++)
         	  {
         		  b[columns + (rows * 14)].DrawBrick( draw );       		  
         	  }
