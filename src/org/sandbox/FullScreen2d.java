@@ -63,8 +63,8 @@ public static void main(String args[]) throws Exception {
             
       BufferStrategy bufferStrategy = frame.getBufferStrategy();
       Draw draw = new org.ice.graphics.io.Draw( bufferStrategy );
-
-      Brick b[] = new Brick[14 * 21];
+      //TODO! move into initLevel function.
+      Brick brick[] = new Brick[14 * 21];
       
       int columnWidth = 0;
       int rowWidth = 0;
@@ -91,7 +91,7 @@ public static void main(String args[]) throws Exception {
     		  {
     			  color = 1;
     		  }
-    		  b[columns + (rows * 14)] = new Brick(20 + columnWidth, 40 + rowWidth, 30, 10, color, 1, Type.Standard);
+    		  brick[columns + (rows * 14)] = new Brick(20 + columnWidth, 40 + rowWidth, 30, 10, color, 1, Type.Standard);
     		  
     		  //columnWidth = 0;
     		  rowWidth = rowWidth + 12;    		  
@@ -117,7 +117,7 @@ public static void main(String args[]) throws Exception {
           {
         	  for(int rows = 0; rows < 21; rows++)
         	  {
-        		  b[columns + (rows * 14)].DrawBrick( draw );       		  
+        		  brick[columns + (rows * 14)].DrawBrick( draw );       		  
         	  }
           }
 
