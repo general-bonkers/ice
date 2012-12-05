@@ -20,6 +20,9 @@ public class Ball extends SpriteObject {
 	public int max_x = 0;			// touch or attempt to cross these values.
 	public int max_y = 0;
 	
+	public int vx = 3;              // Velocity x and y. !TODO set these to 0 and let speed set them!
+	public int vy = 4;              //
+	
 	public BallSpeed speed = BallSpeed.Normal;			// Hope like hell you don't get the slow speed paddle when the ball speed is set to Very Fast lol.	
 	public BallStatus status = BallStatus.Normal;		// No advantages or disadvantages.
 
@@ -70,6 +73,26 @@ public class Ball extends SpriteObject {
 			current_x = 639 - width;
 		}
 		
+		// Update ball here.
+		//this.current_x += this.vx;
+		//this.current_y += this.vy;
+		
+  	  this.current_x = Math.round( this.current_x + this.vx  );
+  	  this.current_y = Math.round( this.current_y + this.vy  );
+		System.out.println(this.vx + " " + this.vy );
+  	  // Wall Collision must come last!
+      // !TODO move this elsewhere!
+  	  if ( this.current_y + 1 > 470 )
+  		  this.vy = -this.vy;
+  	  else if ( this.current_y -1 < 1 )
+  		  this.vy = -this.vy;
+
+  	  if ( this.current_x + 1 > 600 )
+  		  this.vx = -this.vx;
+  	  else if ( this.current_x -1 < 1 )
+  		  this.vx = -this.vx;
+		
+		
 		// Update rectangle status
 		this.rectangle.setLocation( current_x, current_y );
 		
@@ -100,9 +123,55 @@ public class Ball extends SpriteObject {
 		// Reduce player ball count by one.
 	}
 
-	public void handleCollision(SpriteObject spriteObject)
+	public void handleCollision(SpriteObject collisionObject )
 	{
-		// do something here.
+		  if ( collisionObject.current_y >= this.current_y && collisionObject.current_x >= this.current_x )
+		  {
+			  if ( collisionObject.current_y - this.current_y > collisionObject.current_x - this.current_x && this.vx > 0 )
+			  {
+				  this.vy = -this.vy;    					  
+			  }
+			  else
+			  {
+				  this.vx = - this.vx;
+			  }
+		  }
+	    
+		  else if ( collisionObject.current_y >= this.current_y && collisionObject.current_x <= this.current_x )
+		  {
+			  if ( collisionObject.current_y - this.current_y > collisionObject.current_x - this.current_x && this.vx > 0 )
+			  {
+				  this.vy = -this.vy;    					  
+			  }
+			  else
+			  {
+				  this.vx = - this.vx;
+			  }
+		  }
+
+	      else if ( collisionObject.current_y <= this.current_y && collisionObject.current_x >= this.current_x )
+	      {
+			  if ( collisionObject.current_y - this.current_y > collisionObject.current_x - this.current_x && this.vx < 0 )
+			  {
+				  this.vy = -this.vy;    					  
+			  }
+			  else
+			  {
+				  this.vx = - this.vx;
+			  }
+	      }
+  
+		  else if ( collisionObject.current_y <= this.current_y && collisionObject.current_x <= this.current_x )
+		  {
+			  if ( collisionObject.current_y - this.current_y > collisionObject.current_x - this.current_x && this.vx < 0 )
+			  {
+				  this.vy = -this.vy;    					  
+			  }
+			  else
+			  {
+				  this.vx = - this.vx;
+			  }
+		  }		
 	}
 	
 	public Ball()

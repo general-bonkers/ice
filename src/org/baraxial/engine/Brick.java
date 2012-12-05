@@ -144,7 +144,6 @@ public class Brick extends SpriteObject {
 		    
 			throw new BaraxialEngineException(ExceptionType.Brick, message);
 		}
-		System.out.println ( "TEST1" );
 		// Moved Rectangle so it is created AFTER the validation.
 		this.rectangle = new Rectangle(current_x, current_y, width, height);
 	}
