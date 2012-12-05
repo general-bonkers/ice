@@ -59,10 +59,21 @@ Funky Level Ideas:
 http://www.freesound.org/people/Setuniman/sounds/171085/ <-- not bad for intro
 
 
+-[ICE Engine]----
+ - Mouse <- main mouse handler (needs thread to run properly)
+ - Keyboard(todo)
+ - Core(todo) this will contain main gfx initialization code
+ - Draw main lib for gfx
+ - Sprite sprite handler
+ - Net(todo) for handling basic net io
+ - File (todo) for handling xml and config files
+ 
 
 -[Dev NOTES]-----------------------------------
  - completed initial graphics & mouse io
  - 
+ 
+ 
 
 
 
