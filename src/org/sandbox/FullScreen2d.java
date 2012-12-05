@@ -37,7 +37,8 @@ public class FullScreen2d {
     return null;
   }
 
-  public static void main(String args[]) throws Exception {
+  @SuppressWarnings("null")
+public static void main(String args[]) throws Exception {
     GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment
         .getLocalGraphicsEnvironment();
     GraphicsDevice graphicsDevice = graphicsEnvironment
@@ -54,23 +55,65 @@ public class FullScreen2d {
         graphicsDevice
             .setDisplayMode(getBestDisplayMode(graphicsDevice));
       }
+      
       frame.createBufferStrategy(1); // 2 buffers
       Rectangle bounds = frame.getBounds();
       
       Mouse mouse = new Mouse( graphicsDevice );
-      
-      
+            
       BufferStrategy bufferStrategy = frame.getBufferStrategy();
       Draw draw = new org.ice.graphics.io.Draw( bufferStrategy );
 
-      Brick b = new Brick(80, 80, 64, 24, 1, 1, Type.Standard);
+      Brick b[] = new Brick[14 * 16];
       
+      int columnWidth = 0;
+      int rowWidth = 0;
       
+      for(int columns = 0; columns <= 13; columns++)
+      {
+    	  for(int rows = 0; rows <= 15; rows++)
+    	  {
+    		  double rndColor = Math.random();
+    		  int color = 0;
+    		  
+    		  if(rndColor < 0.1d)
+    		  {
+    			  rndColor = 0.1d;
+    		  }
+    		  
+    		  if(rndColor > 0.7d)
+    		  {
+    			  rndColor = 0.7d;
+    		  }
+    		      		  
+    		  color = (int) Math.round(rndColor * 10);
+    		  
+    		  if(color == 0)
+    		  {
+    			  color = 1;
+    		  }
+    		  
+    		  b[columns * rows] = new Brick(80 + columnWidth, 80 + rowWidth, 32, 12, color, 1, Type.Standard);
+    		  
+    		  //columnWidth = 0;
+    		  rowWidth = rowWidth + 14;    		  
+    	  }
+    	  
+    	  rowWidth = 0;
+    	  columnWidth = columnWidth + 34;
+      }
+            
       while (!done()) {
     	  draw.cls( 0 );
-    	  
-    	  b.DrawBrick( draw );
-    	
+
+          for(int columns = 0; columns <= 13; columns++)
+          {
+        	  for(int rows = 0; rows <= 15; rows++)
+        	  {
+        		  b[columns * rows].DrawBrick( draw );       		  
+        	  }
+          }
+          
     	  draw.line( counter - 1, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 2 );
     	  draw.line( counter - 1 +100, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 3  );
     	  draw.line( counter2 - 1 +300, (counter2 - 1) * 5, counter - 1, (counter - 1) * 5, 4  );
