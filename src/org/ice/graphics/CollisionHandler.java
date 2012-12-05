@@ -22,6 +22,19 @@ public class CollisionHandler {
 		spriteObjects.add( spriteObject );
 	}
 	
+	/**
+	 * This method checks active objects against all of the other registered objects. Note that
+	 * it's entirely possible that two objects will be called against eachother. For instance:
+	 * 
+	 * Ball hits Paddle
+	 * 
+	 * Ball.handleCollision()
+	 * later
+	 * Paddle.HandleCollision()
+	 * 
+	 * 
+	 * 
+	 */
 	public void checkCollision()
 	{
 		for (int i = 0; i < spriteObjects.size(); i++ )

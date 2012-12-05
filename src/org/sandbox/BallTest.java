@@ -94,8 +94,8 @@ public class BallTest {
       Ball ball = new Ball();
       ball.x = 50;
       ball.y = 350;
-      ball.vx = 10;
-      ball.vy = 10;
+      ball.vx = 2;
+      ball.vy = 1;
 	  Rectangle ballRect = new Rectangle ( ball.x, ball.y, 15, 15 ); 
 
       
@@ -120,7 +120,9 @@ public class BallTest {
     	  ball.timeFrame = currentFrame;
 
     	  // Visit: http://www.tonypa.pri.ee/vectors for more info.
-    	  draw.box( ball.x, ball.y, 15, 15, 4, true );
+    	  //draw.box( ball.x, ball.y, 15, 15, 4, true );
+    	  draw.circle( ball.x, ball.y, 8, 15, true );
+    	  draw.circle( ball.x, ball.y, 8, 8, false );
     	  // Calculate V3
     	     	  
     	  
@@ -128,7 +130,8 @@ public class BallTest {
      	  // Detect bottom & top face.
     	  for ( int i = 0; i < bricks.length; i++ )
     	  {
-
+    		  System.out.println ( ballRect.toString() );
+    		  System.out.println( bricks[i].getRectangle() );
     		  if ( ballRect.intersects( bricks[i].getRectangle() ) )
     		  {
     			  if ( bricks[i].current_y >= ball.y && bricks[i].current_x >= ball.x )

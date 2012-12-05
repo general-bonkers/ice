@@ -10,7 +10,7 @@ public abstract class SpriteObject {
 	public int width = 0;
 	public boolean isActive;        // Only active objects will be checked to see if they are colliding with other (active or inactive) objects.
 	
-	private Rectangle rectangle;
+	protected Rectangle rectangle;
 		
 	public Rectangle getRectangle()
 	{

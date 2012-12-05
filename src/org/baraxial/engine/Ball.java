@@ -23,7 +23,6 @@ public class Ball extends SpriteObject {
 	public BallSpeed speed = BallSpeed.Normal;			// Hope like hell you don't get the slow speed paddle when the ball speed is set to Very Fast lol.	
 	public BallStatus status = BallStatus.Normal;		// No advantages or disadvantages.
 
-	private Rectangle rectangle;                        // Used for collision detection.
 	
 	public enum BallStatus
 	{

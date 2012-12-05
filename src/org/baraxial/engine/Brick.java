@@ -15,9 +15,7 @@ public class Brick extends SpriteObject {
 	public int strength = 1;			// 1 means the ball has to hit it just once to break this brick.  A value of 3 means the brick must be hit 3 times before this brick will break.
 	
 	public Type brickType = Type.Normal;		// Initial brick set to normal type.
-	
-	private Rectangle rectangle;        // Used for collision detection.
-	
+		
 	public enum Type
 	{
 		Normal,		    // normal break out style brick.
@@ -146,9 +144,9 @@ public class Brick extends SpriteObject {
 		    
 			throw new BaraxialEngineException(ExceptionType.Brick, message);
 		}
-		
+		System.out.println ( "TEST1" );
 		// Moved Rectangle so it is created AFTER the validation.
-		rectangle = new Rectangle(current_x, current_y, width, height);
+		this.rectangle = new Rectangle(current_x, current_y, width, height);
 	}
 	
 	// This function should ensure game rules are followed at all times
