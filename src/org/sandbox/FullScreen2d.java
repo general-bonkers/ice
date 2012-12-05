@@ -12,6 +12,9 @@ import java.awt.image.BufferStrategy;
 import org.ice.graphics.io.Draw;
 import org.ice.io.Mouse;
 import org.sandbox.Brick.Type;
+import org.sandbox.Paddle;
+import org.sandbox.Paddle.PaddleSpeed;
+import org.sandbox.Paddle.PaddleStatus;
 
 public class FullScreen2d {
 
@@ -63,9 +66,10 @@ public static void main(String args[]) throws Exception {
             
       BufferStrategy bufferStrategy = frame.getBufferStrategy();
       Draw draw = new org.ice.graphics.io.Draw( bufferStrategy );
+      
       //TODO! move into initLevel function.
       Brick brick[] = new Brick[14 * 21];
-      
+            
       int columnWidth = 0;
       int rowWidth = 0;
       
@@ -100,6 +104,17 @@ public static void main(String args[]) throws Exception {
     	  rowWidth = 0;
     	  columnWidth = columnWidth + 32;
       }
+      
+      //////////////////////////////////////////////////////////////////////////
+      // Paddle Initialization
+      //////////////////////////
+      Paddle paddle;
+      
+      //                    x,   y,  w,  h, c,   s,              Speed,              Status
+      paddle = new Paddle(320, 420, 45, 10, 6, 100, PaddleSpeed.Normal, PaddleStatus.Normal);
+      
+      
+      
             
       while (!done()) {
     	  draw.cls( 0 );
@@ -121,7 +136,11 @@ public static void main(String args[]) throws Exception {
         	  }
           }
 
-    	  
+          paddle.screen_x = mouse.getMouseX();
+          //paddle.screen_y = mouse.getMouseY();		// This would allow the paddle to move up or down as well.
+          
+          paddle.DrawPaddle(draw);
+          
     	  bufferStrategy.show();
     	  Thread.sleep(16);
          
