@@ -56,7 +56,7 @@ Funky Level Ideas:
 
   
 -[Links to Music & Sounds:]-----------------------------------------------------------------------------------------------
-http://www.freesound.org/people/Setuniman/sounds/171085/ <-- not bad for intro
+See sound effects for ice breakers.txt in the docs folder.
 
 
 -[ICE Engine]----
