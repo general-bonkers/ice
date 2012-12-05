@@ -50,13 +50,13 @@ public static void main(String args[]) throws Exception {
       frame.setIgnoreRepaint(true);
       
       
-      graphicsDevice.setFullScreenWindow(frame);
+      graphicsDevice.setFullScreenWindow(frame);   
       if (graphicsDevice.isDisplayChangeSupported()) {
         graphicsDevice
             .setDisplayMode(getBestDisplayMode(graphicsDevice));
       }
       
-      frame.createBufferStrategy(1); // 2 buffers
+      frame.createBufferStrategy(2); // 2 buffers
       Rectangle bounds = frame.getBounds();
       
       Mouse mouse = new Mouse( graphicsDevice );
@@ -87,13 +87,11 @@ public static void main(String args[]) throws Exception {
     		  }
     		      		  
     		  color = (int) Math.round(rndColor * 10);
-    		  
     		  if(color == 0)
     		  {
     			  color = 1;
     		  }
-    		  
-    		  b[columns * rows] = new Brick(80 + columnWidth, 80 + rowWidth, 32, 12, color, 1, Type.Standard);
+    		  b[columns + (rows * 14)] = new Brick(80 + columnWidth, 80 + rowWidth, 32, 12, color, 1, Type.Standard);
     		  
     		  //columnWidth = 0;
     		  rowWidth = rowWidth + 14;    		  
@@ -105,15 +103,7 @@ public static void main(String args[]) throws Exception {
             
       while (!done()) {
     	  draw.cls( 0 );
-
-          for(int columns = 0; columns <= 13; columns++)
-          {
-        	  for(int rows = 0; rows <= 15; rows++)
-        	  {
-        		  b[columns * rows].DrawBrick( draw );       		  
-        	  }
-          }
-          
+         
     	  draw.line( counter - 1, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 2 );
     	  draw.line( counter - 1 +100, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 3  );
     	  draw.line( counter2 - 1 +300, (counter2 - 1) * 5, counter - 1, (counter - 1) * 5, 4  );
@@ -122,9 +112,18 @@ public static void main(String args[]) throws Exception {
 			
     	  draw.graphics().setColor( Color.WHITE );
     	  draw.graphics().drawString( "Mouse: " + String.valueOf( mouse.getMouseX() ) + "|" + String.valueOf( mouse.getMouseY() ), 20, 20 );
-			
+
+          for(int columns = 0; columns <= 13; columns++)
+          {
+        	  for(int rows = 0; rows <= 15; rows++)
+        	  {
+        		  b[columns + (rows * 14)].DrawBrick( draw );       		  
+        	  }
+          }
+
+    	  
     	  bufferStrategy.show();
-    	  Thread.sleep(20);
+    	  Thread.sleep(16);
          
     	  if ( mouse.getMouseButton() == Mouse.MouseClick.RIGHT )
     	  {
