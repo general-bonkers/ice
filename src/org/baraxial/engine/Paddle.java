@@ -102,6 +102,11 @@ public class Paddle extends SpriteObject {
 		// Reduce player ball count by one.
 	}
 
+	public void handleCollision(SpriteObject spriteObject)
+	{
+		// do something here.
+	}
+	
 	public Paddle()
 	{
 		// Do Nothing
@@ -113,6 +118,7 @@ public class Paddle extends SpriteObject {
 	public Paddle(int current_x, int current_y, int width, int height, int color, int strength, PaddleSpeed speed, PaddleStatus status)
 		throws Exception
 	{
+		this.isActive = true;
 		this.current_x = current_x;
 		this.current_y = current_y;
 		this.width = width;

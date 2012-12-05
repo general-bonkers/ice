@@ -68,6 +68,11 @@ public class Brick extends SpriteObject {
 		// Should set all variables to their default values and call Erase.
 		// TODO: Play sound to indicate block is destroyed.
 	}
+
+	public void handleCollision(SpriteObject spriteObject)
+	{
+		// do something here.
+	}
 	
 	public Brick()
 	{
@@ -80,6 +85,7 @@ public class Brick extends SpriteObject {
 	public Brick(int current_x, int current_y, int width, int height, int color, int strength, Type brickType) 
 			throws Exception
 	{
+		this.isActive = false;
 		this.current_x = current_x;
 		this.current_y = current_y;
 		this.height = height;
