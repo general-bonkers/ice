@@ -20,7 +20,7 @@ public class FullScreen2d {
   private static final int MAX = 50;
 
   private static DisplayMode MODES[] = new DisplayMode[] {
-      new DisplayMode(640, 480, 32, 0), new DisplayMode(640, 480, 16, 0),
+      new DisplayMode(640, 480, 30, 0), new DisplayMode(640, 480, 16, 0),
       new DisplayMode(640, 480, 8, 0) };
 
   private static DisplayMode getBestDisplayMode(GraphicsDevice device) {
@@ -91,14 +91,14 @@ public static void main(String args[]) throws Exception {
     		  {
     			  color = 1;
     		  }
-    		  b[columns + (rows * 14)] = new Brick(20 + columnWidth, 40 + rowWidth, 32, 12, color, 1, Type.Standard);
+    		  b[columns + (rows * 14)] = new Brick(20 + columnWidth, 40 + rowWidth, 30, 10, color, 1, Type.Standard);
     		  
     		  //columnWidth = 0;
-    		  rowWidth = rowWidth + 14;    		  
+    		  rowWidth = rowWidth + 12;    		  
     	  }
     	  
     	  rowWidth = 0;
-    	  columnWidth = columnWidth + 34;
+    	  columnWidth = columnWidth + 32;
       }
             
       while (!done()) {
@@ -113,7 +113,7 @@ public static void main(String args[]) throws Exception {
     	  draw.graphics().setColor( Color.WHITE );
     	  draw.graphics().drawString( "Mouse: " + String.valueOf( mouse.getMouseX() ) + "|" + String.valueOf( mouse.getMouseY() ), 20, 20 );
 
-          for(int columns = 0; columns < 14; columns++)
+          for(int columns = 0; columns < 12; columns++)
           {
         	  for(int rows = 0; rows < 21; rows++)
         	  {
