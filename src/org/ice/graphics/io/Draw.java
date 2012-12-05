@@ -146,6 +146,19 @@ public class Draw {
 		}
 	}
 	
+	public void circle( int x, int y, int diameter, int color, boolean cf )
+	{
+		graphics.setColor( getColor( color ) );
+		if ( cf )
+		{
+			graphics.fillOval( x, y, diameter, diameter );
+		}
+		else
+		{
+			graphics.drawOval( x, y, diameter, diameter );
+		}
+	}
+	
 	public void pset( int x, int y, int color )
 	{
 		graphics.setColor( getColor( color ) );
