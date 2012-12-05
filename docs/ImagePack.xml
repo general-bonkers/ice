@@ -1,0 +1,42 @@
+<!--
+Image pack file format (to be associated with bump bmp
+
+The image pack stores three main segments
+
+ #1 Sprite: width, height, frames, alpha color (if used)
+ 
+ #2 Frames: contains x and y information about the location of each frame.. width and height determined by Sprite segment
+ 
+ #3 Sequence: optional list of animation sequences. Multiple sequences can be stored. Each sequence stores a frame number, and the delay for the frame.
+
+-->
+<ImagePack>
+ <Sprite>
+  <Image>/sprites/doodad1.bmp</Image>
+  <Frames>2</Frames>
+  <Width>20</Width>
+  <Height>20</Height>
+  <Alpha>255</Alpha>  
+ </Sprite>
+ <Frames>
+  <Frame>
+   <X>20</X>
+   <Y>20</Y>
+  </Frame>
+  <Frame>
+   <x>40</x>
+   <y>20</y>
+   <!-- width and height calculated from Sprite tag -->
+  </Frame>
+ </Frames>
+ <Sequence>
+  <Frame>
+   <ID>0</ID>
+   <Delay>100</Delay>
+  </Frame>
+  <Frame>
+   <ID>1</ID>
+   <Delay>100</Delay>
+  </Frame>
+ </Sequence>
+</ImagePack>
