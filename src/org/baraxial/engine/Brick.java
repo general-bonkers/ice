@@ -2,9 +2,7 @@ package org.baraxial.engine;
 
 import org.baraxial.engine.BaraxialEngineException.ExceptionType;
 import org.ice.graphics.io.Draw;
-import java.awt.Frame;
 import java.awt.Rectangle;
-import java.awt.image.BufferStrategy;
 
 public class Brick {
 

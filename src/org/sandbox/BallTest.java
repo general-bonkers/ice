@@ -69,16 +69,16 @@ public class BallTest {
       Draw draw = new org.ice.graphics.io.Draw( bufferStrategy );
       Brick[] bricks = new Brick[10];
                   
-      bricks[0] = new Brick(0, 124, 32, 12, 1, 1, Type.Standard);
-      bricks[1] = new Brick(124, 0, 32, 12, 2, 1, Type.Standard);
-      bricks[2] = new Brick(255, 124, 32, 12, 2, 1, Type.Standard);
-      bricks[3] = new Brick(124, 255, 32, 12, 4, 1, Type.Standard);
-      bricks[4] = new Brick(124, 300, 32, 12, 5, 1, Type.Standard);
-      bricks[5] = new Brick(300, 124, 32, 12, 6, 1, Type.Standard);
-      bricks[6] = new Brick(124, 124, 32, 12, 1, 1, Type.Standard);
-      bricks[7] = new Brick(500, 124, 32, 12, 2, 1, Type.Standard);
-      bricks[8] = new Brick(124, 424, 32, 12, 3, 1, Type.Standard);
-      bricks[9] = new Brick(524, 224, 32, 12, 5, 1, Type.Standard);
+      bricks[0] = new Brick(0, 124, 32, 12, 1, 1, Type.Normal);
+      bricks[1] = new Brick(124, 0, 32, 12, 2, 1, Type.Normal);
+      bricks[2] = new Brick(255, 124, 32, 12, 2, 1, Type.Normal);
+      bricks[3] = new Brick(124, 255, 32, 12, 4, 1, Type.Normal);
+      bricks[4] = new Brick(124, 300, 32, 12, 5, 1, Type.Normal);
+      bricks[5] = new Brick(300, 124, 32, 12, 6, 1, Type.Normal);
+      bricks[6] = new Brick(124, 124, 32, 12, 1, 1, Type.Normal);
+      bricks[7] = new Brick(500, 124, 32, 12, 2, 1, Type.Normal);
+      bricks[8] = new Brick(124, 424, 32, 12, 3, 1, Type.Normal);
+      bricks[9] = new Brick(524, 224, 32, 12, 5, 1, Type.Normal);
       
 	  Ice2DVector v3 = new Ice2DVector();
 	  Ice2DVector paddle = new Ice2DVector();

@@ -3,10 +3,8 @@ package org.sandbox;
 import java.awt.Color;
 import java.awt.DisplayMode;
 import java.awt.Frame;
-import java.awt.Graphics;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 
 import org.baraxial.engine.Brick;
@@ -21,7 +19,8 @@ public class Baraxial {
 
   private static int counter = 0;
   private static int counter2 = 100;
-  private static final int MAX = 50;
+
+//private static final int MAX = 50;
 
   private static DisplayMode MODES[] = new DisplayMode[] {
       new DisplayMode(640, 480, 30, 0), new DisplayMode(640, 480, 16, 0),
@@ -41,7 +40,6 @@ public class Baraxial {
     return null;
   }
 
-  @SuppressWarnings("null")
 public static void main(String args[]) throws Exception {
     GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment
         .getLocalGraphicsEnvironment();
@@ -61,8 +59,6 @@ public static void main(String args[]) throws Exception {
       }
       
       frame.createBufferStrategy(2); // 2 buffers
-      Rectangle bounds = frame.getBounds();
-      
       Mouse mouse = new Mouse( graphicsDevice );
             
       BufferStrategy bufferStrategy = frame.getBufferStrategy();
