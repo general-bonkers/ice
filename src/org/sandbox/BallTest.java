@@ -10,10 +10,11 @@ import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 import java.util.Vector;
 
+import org.baraxial.engine.Brick;
+import org.baraxial.engine.Brick.Type;
 import org.ice.graphics.io.Draw;
 import org.ice.io.Mouse;
 import org.ice.math.Ice2DVector;
-import org.sandbox.Brick.Type;
 
 public class BallTest {
 

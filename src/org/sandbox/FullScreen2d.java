@@ -9,12 +9,13 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 
+import org.baraxial.engine.Brick;
+import org.baraxial.engine.Paddle;
+import org.baraxial.engine.Brick.Type;
+import org.baraxial.engine.Paddle.PaddleSpeed;
+import org.baraxial.engine.Paddle.PaddleStatus;
 import org.ice.graphics.io.Draw;
 import org.ice.io.Mouse;
-import org.sandbox.Brick.Type;
-import org.sandbox.Paddle;
-import org.sandbox.Paddle.PaddleSpeed;
-import org.sandbox.Paddle.PaddleStatus;
 
 public class FullScreen2d {
 
