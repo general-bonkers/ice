@@ -1,7 +1,8 @@
-Game load
+Game load / intro
 
 	http://www.freesound.org/people/pryght%20one/sounds/27146/
-
+	http://www.freesound.org/people/Setuniman/sounds/171085/ <-- not bad for intro
+	
 Creepy Music
 
 	http://www.freesound.org/people/Setuniman/sounds/159451/
