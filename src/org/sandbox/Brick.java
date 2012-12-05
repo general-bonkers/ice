@@ -11,13 +11,13 @@ public class Brick {
 	 * The Draw, Erase and Destroy brick routines need to be implemented.
 	 */
 		
-	private int screen_x = 0;			// indicates the horizontal start of the left corner of the brick.
-	private int screen_y = 0;			// indicates the vertical start of the left corner of the brick.
-	private int height = 0;				// indicates the height of the brick.
-	private int width = 0;				// indicates the width of the brick.
-	private int color = 0;				// Must be a value in the existing palette. 
-	private int strength = 1;			// 1 means the ball has to hit it just once to break this brick.  A value of 3 means the brick must be hit 3 times before this brick will break.
-	private Type brickType = Type.Standard;		// Initial brick set to standard type.
+	public int screen_x = 0;			// indicates the horizontal start of the left corner of the brick.
+	public int screen_y = 0;			// indicates the vertical start of the left corner of the brick.
+	public int height = 0;				// indicates the height of the brick.
+	public int width = 0;				// indicates the width of the brick.
+	public int color = 0;				// Must be a value in the existing palette. 
+	public int strength = 1;			// 1 means the ball has to hit it just once to break this brick.  A value of 3 means the brick must be hit 3 times before this brick will break.
+	public Type brickType = Type.Standard;		// Initial brick set to standard type.
 	
 	public enum Type
 	{
@@ -162,53 +162,5 @@ public class Brick {
 		    
 			throw new IceEngineException(ExceptionType.brick, message);
 		}
-	}
-	
-	public int getScreen_x() {
-		return screen_x;
-	}
-
-	public void setScreen_x(int screen_x) {
-		this.screen_x = screen_x;
-	}
-
-	public int getScreen_y() {
-		return screen_y;
-	}
-
-	public void setScreen_y(int screen_y) {
-		this.screen_y = screen_y;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
-	public int getWidth() {
-		return width;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public int getColor() {
-		return color;
-	}
-
-	public void setColor(int color) {
-		this.color = color;
-	}
-
-	public int getStrength() {
-		return strength;
-	}
-
-	public void setStrength(int strength) {
-		this.strength = strength;
 	}
 }

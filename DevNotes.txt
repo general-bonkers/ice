@@ -27,6 +27,14 @@
  - piano intro
  - 90's style mod music with some ambient, some upbeat and other stuff
  
+ 
+-[Difficulty Levels]----------------------------------------------------------------------------------------
+
+- Easy:   Power ups occur often, less likely to have "Power Downs, like skinny paddle". More 1 UPs
+- Normal: Power ups occur, chances are more likely to get things like a skinny paddle. Less 1 UPs
+- Hard:   Power ups occur sometimes, chances are you will get things like a skinny paddle.  1 UPs are rare.
+
+TODO:  Add more details as they become available.  -JSC  12/5/2012 @ 10:45 AM
 
 -[Drop Types]-----------------------------------------------------------------------------------------------
 Drop Types:
