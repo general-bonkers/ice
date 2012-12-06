@@ -97,14 +97,15 @@ public class BallTest {
       ball.vx = 2;
       ball.vy = 1;
 	  Rectangle ballRect = new Rectangle ( ball.x, ball.y, 15, 15 ); 
-
+	  int logo = draw.loadImage( "./gfx/wombat_logo2.bmp" );
       
       while (!done()) {
     	  time = System.currentTimeMillis();
     	     	  
     			      	  
     	  draw.cls( 0 );
-    	  
+    	  draw.drawImage( logo, 170, 120 );
+/*    	  
     	  for ( int i = 0; i < bricks.length; i++ )
     	  {
     		  bricks[i].DrawBrick( draw );
@@ -197,16 +198,6 @@ public class BallTest {
 
     	  
     	  
-/*    	  
-    	  v3.vx = paddle.x - ball.x;
-    	  v3.vx = paddle.y - ball.y;
-    	  int t = 0;
-    	  if ( perpP( ball, paddle ) > 0 )
-    		  t = perpP( v3, paddle ) / perpP( ball, paddle );
-    	  
-    	  ballPaddleIntersect.x = ball.x + paddle.vx * t;
-    	  ballPaddleIntersect.y = ball.y + paddle.vy * t;
-*/    	  
     	  // Check for collision
 
     	  
@@ -221,6 +212,7 @@ public class BallTest {
     	  draw.graphics().drawString( "Mouse: " + String.valueOf( mouse.getMouseX() ) + "|" + String.valueOf( mouse.getMouseY() ), 20, 20 );
     	  String message = "Ball: " + ball.x + "," + ball.y + " : timeFrame " +  ball.timeFrame;    	  
     	  draw.graphics().drawString( message, 20, 30 );
+*/    	  
     	  bufferStrategy.show();
     	  Thread.sleep(16);
          

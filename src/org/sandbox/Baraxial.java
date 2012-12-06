@@ -129,8 +129,18 @@ public static void main(String args[]) throws Exception {
       collisionHandler.addSpriteObject( paddle );
       collisionHandler.addSpriteObject( ball );
       
-            
+      long time = System.currentTimeMillis()+1000;
+      int clock = 0;
+      int fps = 0;
+      
       while (!done()) {
+    	  clock++;
+    	  if ( System.currentTimeMillis() > time )
+    	  {
+    		  fps = clock;
+    		  clock = 0;
+    	      time = System.currentTimeMillis()+1000;    				  
+    	  }
     	  draw.cls( 0 );
          
     	  // check for collisions:
@@ -144,7 +154,7 @@ public static void main(String args[]) throws Exception {
 			
     	  draw.graphics().setColor( Color.WHITE );
     	  draw.graphics().drawString( "Mouse: " + String.valueOf( mouse.getMouseX() ) + "|" + String.valueOf( mouse.getMouseY() ), 20, 20 );
-
+    	  draw.graphics().drawString( "FPS:" + fps, 20, 30 );
           for(int columns = 0; columns < 12; columns++)
           {
         	  for(int rows = 0; rows < 21; rows++)
@@ -160,7 +170,7 @@ public static void main(String args[]) throws Exception {
           ball.DrawBall( draw );
           
     	  bufferStrategy.show();
-    	  Thread.sleep(16);
+    	  Thread.sleep(12);
          
     	  if ( mouse.getMouseButton() == Mouse.MouseClick.RIGHT )
     	  {
