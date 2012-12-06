@@ -1,6 +1,7 @@
 package org.baraxial.engine;
 
 import org.baraxial.engine.BaraxialEngineException.ExceptionType;
+import org.ice.graphics.CollisionHandler;
 import org.ice.graphics.SpriteObject;
 import org.ice.graphics.io.Draw;
 import java.awt.Rectangle;
@@ -46,18 +47,11 @@ public class Brick extends SpriteObject {
   	  	draw.box(current_x, current_y, width, height, color + 8, false);
 	}
 	
-	public void Hit(int damage)
+	public int Hit(int damage)
 	{
 		strength = strength - damage;
 		
-		if(strength <= 0)
-		{
-			Destroy();
-		}
-		else
-		{
-			// TODO: Play sound to indicate block is hit but not destroyed.
-		}
+		return strength;
 	}
 	
 	public void Destroy()
@@ -68,7 +62,15 @@ public class Brick extends SpriteObject {
 	}
 
 	public void handleCollision(SpriteObject spriteObject)
-	{
+	{		
+		//if(spriteObject instanceof Brick)
+		//{
+		//	if(Hit(1) <= 0)
+		//	{
+		//		CollisionHandler.removeSpriteObject(spriteObject);
+		//	}
+		//}		
+
 		// do something here.
 	}
 	

@@ -22,6 +22,11 @@ public class CollisionHandler {
 		spriteObjects.add( spriteObject );
 	}
 	
+	public void removeSpriteObject( SpriteObject spriteObject )
+	{
+		spriteObjects.remove( spriteObject );
+	}
+	
 	/**
 	 * This method checks active objects against all of the other registered objects. Note that
 	 * it's entirely possible that two objects will be called against eachother. For instance:
