@@ -1,9 +1,9 @@
 package org.baraxial.engine;
 
 import org.baraxial.engine.BaraxialEngineException.ExceptionType;
-import org.ice.graphics.io_old.Draw;
-import org.ice.graphics_old.CollisionHandler;
-import org.ice.graphics_old.SpriteObject;
+import org.ice.graphics.CollisionHandler;
+import org.ice.graphics.Graphics;
+import org.ice.graphics.SpriteObject;
 
 import java.awt.Rectangle;
 
@@ -41,11 +41,11 @@ public class Brick extends SpriteObject {
 		StrengthEquals10AndEitherIsStoneOrIsSteelMustBeSetTo10;
 	}
 	
-	public void DrawBrick(Draw draw)
+	public void DrawBrick(Graphics graphics)
 	{		
-		draw.box(current_x, current_y, width, height, color, true);
-  	  	draw.box(current_x + 1, current_y + 1, width - 2, height - 2, color + 8, false);
-  	  	draw.box(current_x, current_y, width, height, color + 8, false);
+		graphics.box(current_x, current_y, width, height, color, true);
+  	  	graphics.box(current_x + 1, current_y + 1, width - 2, height - 2, color + 8, false);
+  	  	graphics.box(current_x, current_y, width, height, color + 8, false);
 	}
 	
 	public int Hit(int damage)

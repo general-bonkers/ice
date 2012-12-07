@@ -3,8 +3,8 @@ package org.baraxial.engine;
 import java.awt.Rectangle;
 
 import org.baraxial.engine.BaraxialEngineException.ExceptionType;
-import org.ice.graphics.io_old.Draw;
-import org.ice.graphics_old.SpriteObject;
+import org.ice.graphics.Graphics;
+import org.ice.graphics.SpriteObject;
 
 public class Paddle extends SpriteObject {
 
@@ -60,7 +60,7 @@ public class Paddle extends SpriteObject {
 		Fast
 	}
 
-	public void DrawPaddle(Draw draw)
+	public void DrawPaddle(Graphics graphics)
 	{
 		//I think screen_x and screen_y need to go away and us keep current_ [x|y]. No need for both.
 		//screen_x = current_x;
@@ -74,9 +74,9 @@ public class Paddle extends SpriteObject {
 		// Update rectangle status
 		this.rectangle.setLocation( current_x, current_y );
 		
-		draw.box(current_x, current_y, width, height, color, true);
-  	  	draw.box(current_x + 1, current_y + 1, width - 2, height - 2, color + 8, false);
-  	  	draw.box(current_x, current_y, width, height, color + 8, false);		
+		graphics.box(current_x, current_y, width, height, color, true);
+  	  	graphics.box(current_x + 1, current_y + 1, width - 2, height - 2, color + 8, false);
+  	  	graphics.box(current_x, current_y, width, height, color + 8, false);		
 	}
 		
 	public void Hit(int damage)

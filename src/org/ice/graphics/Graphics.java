@@ -88,7 +88,7 @@ public class Graphics {
 		return display.peekP( x, y );
 	}
 	
-	public void close()
+	public void exit()
 	{
 		display.returnToDesktop();
 	}
@@ -240,6 +240,6 @@ public class Graphics {
 		}
 		g.render();
 		Thread.sleep(2000);
-		g.close();
+		g.exit();
 	}
 }

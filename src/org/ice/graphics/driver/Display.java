@@ -218,6 +218,11 @@ public class Display {
 		this.color = new Color( palette.getRGB( color ) );
 		videoPageGraphics.setColor( this.color );
 		videoPageGraphics.fillRect( 0, 0, width, height );
+		//temp workaround for now.
+		for ( int i = 0; i < width * height; i++ )
+		{
+			iceBuffer[i] = 0;
+		}
 	}
 
 	

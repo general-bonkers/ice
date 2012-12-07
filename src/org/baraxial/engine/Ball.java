@@ -1,8 +1,8 @@
 package org.baraxial.engine;
 
 import org.baraxial.engine.BaraxialEngineException.ExceptionType;
-import org.ice.graphics.io_old.Draw;
-import org.ice.graphics_old.SpriteObject;
+import org.ice.graphics.Graphics;
+import org.ice.graphics.SpriteObject;
 
 import java.awt.Rectangle;
 
@@ -62,7 +62,7 @@ public class Ball extends SpriteObject {
 		Hyper
 	}
 
-	public void DrawBall(Draw draw)
+	public void DrawBall( Graphics graphics )
 	{
 		//I think screen_x and screen_y need to go away and us keep current_ [x|y]. No need for both.
 		//screen_x = current_x;
@@ -96,9 +96,9 @@ public class Ball extends SpriteObject {
 		// Update rectangle status
 		this.rectangle.setLocation( current_x, current_y );
 		
-		draw.circle(current_x, current_y, width, color, true);
-		draw.circle(current_x + 1, current_y + 1, width - 2, color + 8, false);
-		draw.circle(current_x, current_y, width, color + 8, false);
+		graphics.circle(current_x, current_y, width, color, true);
+		graphics.circle(current_x + 1, current_y + 1, width - 2, color + 8, false);
+		graphics.circle(current_x, current_y, width, color + 8, false);
 	}
 		
 	public void Hit(int damage)

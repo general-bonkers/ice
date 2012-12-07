@@ -15,8 +15,8 @@ import org.baraxial.engine.Ball.BallStatus;
 import org.baraxial.engine.Brick.Type;
 import org.baraxial.engine.Paddle.PaddleSpeed;
 import org.baraxial.engine.Paddle.PaddleStatus;
-import org.ice.graphics.io_old.Draw;
-import org.ice.graphics_old.CollisionHandler;
+import org.ice.graphics.CollisionHandler;
+import org.ice.graphics.Graphics;
 import org.ice.io.Mouse;
 
 public class Baraxial {
@@ -26,48 +26,16 @@ public class Baraxial {
 
 //private static final int MAX = 50;
 
-  private static DisplayMode MODES[] = new DisplayMode[] {
-      new DisplayMode(640, 480, 32, 0), new DisplayMode(640, 480, 16, 0),
-      new DisplayMode(640, 480, 8, 0) };
 
-  private static DisplayMode getBestDisplayMode(GraphicsDevice device) {
-    for (int x = 0, xn = MODES.length; x < xn; x++) {
-      DisplayMode[] modes = device.getDisplayModes();
-      for (int i = 0, in = modes.length; i < in; i++) {
-        if (modes[i].getWidth() == MODES[x].getWidth()
-            && modes[i].getHeight() == MODES[x].getHeight()
-            && modes[i].getBitDepth() == MODES[x].getBitDepth()) {
-          return MODES[x];
-        }
-      }
-    }
-    return null;
-  }
 
 public static void main(String args[]) throws Exception {
-    GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment
-        .getLocalGraphicsEnvironment();
-    GraphicsDevice graphicsDevice = graphicsEnvironment
-        .getDefaultScreenDevice();
-    DisplayMode originalDisplayMode = graphicsDevice.getDisplayMode();
+	
+	  Graphics graphics = new Graphics();
+	  graphics.init(0); // 0 is 640x480
+	  
+	  //!TODO handle better.
+	  Mouse mouse = new Mouse( graphics.getGraphicsDevice() );
 
-      Frame frame = new Frame();
-      frame.setUndecorated(true);
-      frame.setIgnoreRepaint(true);
-      
-      
-      graphicsDevice.setFullScreenWindow(frame);   
-      if (graphicsDevice.isDisplayChangeSupported()) {
-        graphicsDevice
-            .setDisplayMode(getBestDisplayMode(graphicsDevice));
-      }
-      
-      frame.createBufferStrategy(2); // 2 buffers
-      Mouse mouse = new Mouse( graphicsDevice );
-            
-      BufferStrategy bufferStrategy = frame.getBufferStrategy();
-      Draw draw = new org.ice.graphics.io_old.Draw( bufferStrategy );
-      
       //TODO! move into initLevel function.
       Brick brick[] = new Brick[14 * 21];
             
@@ -143,35 +111,37 @@ public static void main(String args[]) throws Exception {
     		  clock = 0;
     	      time = System.currentTimeMillis()+1000;    				  
     	  }
-    	  draw.cls( 0 );
+    	  graphics.clearScreen( 0 );
          
     	  // check for collisions:
     	 // collisionHandler.checkCollision();
     	  
-    	  draw.line( counter - 1, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 2 );
-    	  draw.line( counter - 1 +100, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 3  );
-    	  draw.line( counter2 - 1 +300, (counter2 - 1) * 5, counter - 1, (counter - 1) * 5, 4  );
-    	  draw.graphics().drawString( "TEST!", 1, 1 ); 
-    	  draw.graphics().setColor(Color.RED);
+    	  graphics.line( counter - 1, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 2 );
+    	  graphics.line( counter - 1 +100, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 3  );
+    	  graphics.line( counter2 - 1 +300, (counter2 - 1) * 5, counter - 1, (counter - 1) * 5, 4  );
+/*
+    	  graphics.graphics().drawString( "TEST!", 1, 1 ); 
+    	  graphics.graphics().setColor(Color.RED);
 			
-    	  draw.graphics().setColor( Color.WHITE );
-    	  draw.graphics().drawString( "Mouse: " + String.valueOf( mouse.getMouseX() ) + "|" + String.valueOf( mouse.getMouseY() ), 20, 20 );
-    	  draw.graphics().drawString( "FPS:" + fps, 20, 30 );
+    	  graphics.graphics().setColor( Color.WHITE );
+    	  graphics.graphics().drawString( "Mouse: " + String.valueOf( mouse.getMouseX() ) + "|" + String.valueOf( mouse.getMouseY() ), 20, 20 );
+    	  graphics.graphics().drawString( "FPS:" + fps, 20, 30 );
+*/    	  
           for(int columns = 0; columns < 12; columns++)
           {
         	  for(int rows = 0; rows < 21; rows++)
         	  {
-        		  brick[columns + (rows * 14)].DrawBrick( draw );       		  
+        		  brick[columns + (rows * 14)].DrawBrick( graphics );       		  
         	  }
           }
 
           paddle.current_x = mouse.getMouseX();
           //paddle.screen_y = mouse.getMouseY();		// This would allow the paddle to move up or down as well.
           
-          paddle.DrawPaddle(draw);
-          ball.DrawBall( draw );
+          paddle.DrawPaddle( graphics );
+          ball.DrawBall( graphics );
           
-    	  bufferStrategy.show();
+    	  graphics.render();
     	  Thread.sleep(12);
          
     	  if ( mouse.getMouseButton() == Mouse.MouseClick.RIGHT )
@@ -180,12 +150,10 @@ public static void main(String args[]) throws Exception {
     	  }
       }
       
-      if (draw != null) {
-            draw.dispose();
+      if ( graphics != null) {
+            graphics.exit();
       }
 
-      graphicsDevice.setDisplayMode(originalDisplayMode);
-      graphicsDevice.setFullScreenWindow(null);
       System.exit(0);
   }
 
