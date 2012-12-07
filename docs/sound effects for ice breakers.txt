@@ -1,0 +1,88 @@
+Game load / intro
+
+	http://www.freesound.org/people/pryght%20one/sounds/27146/
+	http://www.freesound.org/people/Setuniman/sounds/171085/ <-- not bad for intro
+	
+End Credit
+
+	http://www.freesound.org/people/Setuniman/sounds/148287/	- Peaceful
+	http://www.freesound.org/people/ddohler/sounds/34259/		- Execution March
+	http://www.freesound.org/people/Setuniman/sounds/159451/	- Creepy
+	
+Laser
+
+	http://www.freesound.org/people/HardPCM/sounds/32945/		- I like this one. Sounds good looped.
+	http://www.freesound.org/people/qubodup/sounds/171100/
+	http://www.freesound.org/people/suonho/sounds/27568/
+	http://www.freesound.org/people/aust_paul/sounds/30935/
+	http://www.freesound.org/people/THE_bizniss/sounds/39459/
+	http://www.freesound.org/people/THE_bizniss/sounds/39458/
+
+Level Loading
+
+	http://www.freesound.org/people/qubodup/sounds/169727/
+	http://www.freesound.org/people/suonho/sounds/27567/
+
+Brick Breaking
+
+	http://www.freesound.org/people/HardPCM/sounds/31873/
+
+Ball Bouncing off the paddle or perhaps a steel brick
+
+	http://www.freesound.org/people/HardPCM/sounds/33113/  - use only 1/2 the sound.
+	http://www.freesound.org/people/HardPCM/sounds/32952/
+	http://www.freesound.org/people/HardPCM/sounds/31862/  - steel brick hit.
+
+Ball Bounceing off a stone brick.
+
+	http://www.freesound.org/people/HardPCM/sounds/34233/
+	http://www.freesound.org/people/HardPCM/sounds/33226/
+
+
+Ball Bounce - Normal
+
+	http://www.freesound.org/people/HardPCM/sounds/32948/
+	http://www.freesound.org/people/HardPCM/sounds/32949/
+	http://www.freesound.org/people/HardPCM/sounds/32950/
+	http://www.freesound.org/people/HardPCM/sounds/33241/	- General Purpose Bounce, Perhaps even off the wall or paddle.
+1UP
+	
+	http://www.freesound.org/people/HardPCM/sounds/34232/
+	http://www.freesound.org/people/HardPCM/sounds/32946/
+	http://www.freesound.org/people/HardPCM/sounds/34240/ 
+	http://www.freesound.org/people/HardPCM/sounds/33214/
+
+Lost Ball - loose one life.
+
+	http://www.freesound.org/people/HardPCM/sounds/32953/
+	http://www.freesound.org/people/HardPCM/sounds/31873/
+
+Receiving a bad drop object
+
+	http://www.freesound.org/people/HardPCM/sounds/31879/	- Paddle Shrinking
+
+Receiving a drop object
+
+	http://www.freesound.org/people/HardPCM/sounds/32944/
+
+Level Music
+
+	http://www.freesound.org/people/LS/sounds/59486/
+	http://www.freesound.org/people/TexasMusicForge/sounds/2684/
+	http://www.freesound.org/people/TexasMusicForge/sounds/2686/
+	http://www.freesound.org/people/jo130/sounds/17562/
+	http://www.freesound.org/people/zuben/sounds/36744/
+	http://www.freesound.org/people/genghis%20attenborough/sounds/32398/ 	- Not sure if I like it or not.
+	http://www.freesound.org/people/klankbeeld/sounds/120368/				- Long song
+	http://www.freesound.org/people/bilwiss/sounds/24237/					- Might be to loud
+	http://www.freesound.org/people/suonho/sounds/58660/					- Techno synth
+	http://www.freesound.org/people/Connum/sounds/12691/					- Sad Piano, Long song
+	http://www.freesound.org/people/Vann%20Westfold/sounds/34301/			- Choir, thats why I included it.
+	http://www.freesound.org/people/Connum/sounds/12693/					- Sad Piano #2
+	http://www.freesound.org/people/Erdie/sounds/35235/						- LOL the soung "Go to Sleep" on Music Box
+	http://www.freesound.org/people/murcielago123/sounds/81459/				- Strange and Happy
+	http://www.freesound.org/people/cheesepuff/sounds/112071/				- Been a while since I found anything decent.
+	http://www.freesound.org/people/imaginaryband/sounds/79421/				- Good, takes a while to get interesting
+	
+Perhaps instead of 1 to 4 minute songs the levels could start out with 20-30 seconds of music.
+Then the music would go away leaving just the game sounds???  5:08 AM on 12/6/2012	
