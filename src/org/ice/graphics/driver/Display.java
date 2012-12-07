@@ -79,7 +79,7 @@ public class Display {
 
     	display.lineP( -30, 10, 30, 40, 2 );
 
-    	display.boxP( -100, 100, 130, 140, 3, false );
+    	display.boxP( 40, 40, 20, 10, 3, true );
 
     	display.circleP( 200, 200, 20, 5, false );
     	
@@ -290,19 +290,33 @@ public class Display {
 	public void boxP( int x, int y, int w, int h, int color, boolean bf )
 	{
 		// set the Color object value from the indexed color
-		this.color = new Color( palette.getRGB( color ) );
-		videoPageGraphics.setColor( this.color );
 		if ( bf )
 		{
-			int seg = x + ( width * y );
-			int offset = w + ( width * h );
-			
-			for ( int i = seg; i < offset; i++ )
+			w += x;
+			h += y;
+			int tmp = 0;
+			if ( x > w )
 			{
-				
+				x = tmp;
+				x = w;
+				w = tmp; 
 			}
 			
-			videoPageGraphics.fillRect( x, y, w, h );
+			if ( y > h )
+			{
+				y = tmp;
+				y = h;
+				h = tmp; 
+			}
+			for ( int yy = y; yy < h; yy++ )
+			{
+				for ( int xx = x; xx < w; xx++ )
+				{
+					pokeP( xx, yy, color );
+				}
+			}
+			
+			//videoPageGraphics.fillRect( x, y, w, h );
 		}
 		else
 		{

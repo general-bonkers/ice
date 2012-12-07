@@ -17,6 +17,7 @@ import org.baraxial.engine.Paddle.PaddleSpeed;
 import org.baraxial.engine.Paddle.PaddleStatus;
 import org.ice.graphics.CollisionHandler;
 import org.ice.graphics.Graphics;
+import org.ice.graphics.ImageBuffer;
 import org.ice.io.Mouse;
 
 public class Baraxial {
@@ -101,7 +102,7 @@ public static void main(String args[]) throws Exception {
       int clock = 0;
       int fps = 0;
       
-      
+      ImageBuffer logo = graphics.loadImage( "./gfx/wombat_logo2.bmp", false );
       
       while (!done()) {
     	  clock++;
@@ -140,7 +141,7 @@ public static void main(String args[]) throws Exception {
           
           paddle.DrawPaddle( graphics );
           ball.DrawBall( graphics );
-          
+          //graphics.drawImage( logo, 200, 200, false );
     	  graphics.render();
     	  Thread.sleep(12);
          
