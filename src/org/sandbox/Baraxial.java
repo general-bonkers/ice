@@ -15,8 +15,8 @@ import org.baraxial.engine.Ball.BallStatus;
 import org.baraxial.engine.Brick.Type;
 import org.baraxial.engine.Paddle.PaddleSpeed;
 import org.baraxial.engine.Paddle.PaddleStatus;
-import org.ice.graphics.CollisionHandler;
-import org.ice.graphics.io.Draw;
+import org.ice.graphics.io_old.Draw;
+import org.ice.graphics_old.CollisionHandler;
 import org.ice.io.Mouse;
 
 public class Baraxial {
@@ -27,7 +27,7 @@ public class Baraxial {
 //private static final int MAX = 50;
 
   private static DisplayMode MODES[] = new DisplayMode[] {
-      new DisplayMode(640, 480, 30, 0), new DisplayMode(640, 480, 16, 0),
+      new DisplayMode(640, 480, 32, 0), new DisplayMode(640, 480, 16, 0),
       new DisplayMode(640, 480, 8, 0) };
 
   private static DisplayMode getBestDisplayMode(GraphicsDevice device) {
@@ -66,7 +66,7 @@ public static void main(String args[]) throws Exception {
       Mouse mouse = new Mouse( graphicsDevice );
             
       BufferStrategy bufferStrategy = frame.getBufferStrategy();
-      Draw draw = new org.ice.graphics.io.Draw( bufferStrategy );
+      Draw draw = new org.ice.graphics.io_old.Draw( bufferStrategy );
       
       //TODO! move into initLevel function.
       Brick brick[] = new Brick[14 * 21];
@@ -133,6 +133,8 @@ public static void main(String args[]) throws Exception {
       int clock = 0;
       int fps = 0;
       
+      
+      
       while (!done()) {
     	  clock++;
     	  if ( System.currentTimeMillis() > time )
@@ -144,7 +146,7 @@ public static void main(String args[]) throws Exception {
     	  draw.cls( 0 );
          
     	  // check for collisions:
-    	  collisionHandler.checkCollision();
+    	 // collisionHandler.checkCollision();
     	  
     	  draw.line( counter - 1, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 2 );
     	  draw.line( counter - 1 +100, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 3  );

@@ -12,7 +12,7 @@ import java.util.Vector;
 
 import org.baraxial.engine.Brick;
 import org.baraxial.engine.Brick.Type;
-import org.ice.graphics.io.Draw;
+import org.ice.graphics.io_old.Draw;
 import org.ice.io.Mouse;
 import org.ice.math.Ice2DVector;
 
@@ -23,8 +23,9 @@ public class BallTest {
   private static final int MAX = 50;
 
   private static DisplayMode MODES[] = new DisplayMode[] {
-      new DisplayMode(640, 480, 32, 0), new DisplayMode(640, 480, 16, 0),
-      new DisplayMode(640, 480, 8, 0) };
+	  new DisplayMode(640, 480, 8, 0) };
+      //new DisplayMode(640, 480, 32, 0), new DisplayMode(640, 480, 16, 0),
+      //new DisplayMode(640, 480, 8, 0) };
 
   private static DisplayMode getBestDisplayMode(GraphicsDevice device) {
     for (int x = 0, xn = MODES.length; x < xn; x++) {
@@ -66,7 +67,7 @@ public class BallTest {
       
       
       BufferStrategy bufferStrategy = frame.getBufferStrategy();
-      Draw draw = new org.ice.graphics.io.Draw( bufferStrategy );
+      Draw draw = new org.ice.graphics.io_old.Draw( bufferStrategy );
       Brick[] bricks = new Brick[10];
                   
       bricks[0] = new Brick(0, 124, 32, 12, 1, 1, Type.Normal);

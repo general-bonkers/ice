@@ -3,8 +3,8 @@ package org.baraxial.engine;
 import java.awt.Rectangle;
 
 import org.baraxial.engine.BaraxialEngineException.ExceptionType;
-import org.ice.graphics.SpriteObject;
-import org.ice.graphics.io.Draw;
+import org.ice.graphics.io_old.Draw;
+import org.ice.graphics_old.SpriteObject;
 
 public class Paddle extends SpriteObject {
 
