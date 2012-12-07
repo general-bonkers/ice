@@ -29,6 +29,7 @@ public class Brick extends SpriteObject {
 	public enum Status
 	{
 		Normal,
+		Dead,
 		HorizontalCurrentPositionBelowZero,
 		VerticalCurrentPositionBelowZero,
 		HorizontalCurrentPositionHigh,
@@ -60,6 +61,8 @@ public class Brick extends SpriteObject {
 		// TODO: Implementation Needed.
 		// Should set all variables to their default values and call Erase.
 		// TODO: Play sound to indicate block is destroyed.
+
+		// Game logic must destroy.
 	}
 
 	public void handleCollision(SpriteObject spriteObject)

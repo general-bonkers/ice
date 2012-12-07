@@ -150,8 +150,6 @@ public class Graphics {
 		int src[] = image.getBuffer();
 		int dest[] = display.getVideoBuffer();
 		
-		// how do you do this?
-		//System.arraycopy( src, 0, dest, destSeg, src.length );
 		int plotx, ploty, pixel, transColor;
 		
 		transColor = display.getPalette().transparentColor;

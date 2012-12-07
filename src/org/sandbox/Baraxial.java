@@ -27,6 +27,21 @@ public class Baraxial {
 
 //private static final int MAX = 50;
 
+  /* Dev NOTES ** Add your to-do's here as you think of them **
+   * 
+   *  TODO:
+   *  
+   * - code cleanup
+   * - convert brick array to vector (so that we may drop items from array)
+   * - fix bounce logic.. sometimes acts up (goes through paddle)
+   * - make it so paddle shoots left when on left side and right when on right side
+   * - hide pointer
+   * 
+   * 
+   * 
+   * 
+   * 
+   */
 
 
 public static void main(String args[]) throws Exception {
@@ -65,7 +80,7 @@ public static void main(String args[]) throws Exception {
     		  {
     			  color = 1;
     		  }
-    		  brick[columns + (rows * 14)] = new Brick(20 + columnWidth, 40 + rowWidth, 30, 10, color, 1, Type.Normal);
+    		  brick[columns + (rows * 14)] = new Brick(20 + columnWidth, 40 + rowWidth, 30, 10, color, (int)Math.round(rndColor * 4)+1, Type.Normal);
     		  
     		  //columnWidth = 0;
     		  rowWidth = rowWidth + 12;    		  
@@ -84,7 +99,7 @@ public static void main(String args[]) throws Exception {
       
       Ball ball;
       
-      ball = new Ball(200, 400, 10, 10, 7, 100, BallSpeed.Normal, BallStatus.Normal);
+      ball = new Ball(300, 200, 4, 4, 7, 100, BallSpeed.Normal, BallStatus.Normal);
       
       CollisionHandler collisionHandler = new CollisionHandler();
       
@@ -116,7 +131,7 @@ public static void main(String args[]) throws Exception {
     	  graphics.clearScreen( 0 );
          
     	  // check for collisions:
-    	 // collisionHandler.checkCollision();
+    	  collisionHandler.checkCollision();
     	  
     	  graphics.line( counter - 1, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 2 );
     	  graphics.line( counter - 1 +100, (counter - 1) * 5, counter2 - 1, (counter2 - 1) * 5, 3  );
@@ -129,11 +144,21 @@ public static void main(String args[]) throws Exception {
     	  graphics.graphics().drawString( "Mouse: " + String.valueOf( mouse.getMouseX() ) + "|" + String.valueOf( mouse.getMouseY() ), 20, 20 );
     	  graphics.graphics().drawString( "FPS:" + fps, 20, 30 );
 */    	  
-          for(int columns = 0; columns < 12; columns++)
+          for(int columns = 0; columns < 14; columns++)
           {
         	  for(int rows = 0; rows < 21; rows++)
         	  {
-        		  brick[columns + (rows * 14)].DrawBrick( graphics );       		  
+        		  
+        		  if ( brick[columns + (rows * 14)].strength < 1 )
+        		  {
+        			  collisionHandler.removeSpriteObject( brick[columns +(rows * 14 )] );
+        		  }
+        		  // !TODO switch array to vector so we can physically remove them.
+        		  else
+        		  {
+            		  brick[columns + (rows * 14)].DrawBrick( graphics );  
+
+        		  }
         	  }
           }
 

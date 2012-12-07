@@ -25,8 +25,7 @@ public class Ball extends SpriteObject {
 	
 	public BallSpeed speed = BallSpeed.Normal;			// Hope like hell you don't get the slow speed paddle when the ball speed is set to Very Fast lol.	
 	public BallStatus status = BallStatus.Normal;		// No advantages or disadvantages.
-
-	
+		
 	public enum BallStatus
 	{
 		Normal,
@@ -67,12 +66,12 @@ public class Ball extends SpriteObject {
 		//I think screen_x and screen_y need to go away and us keep current_ [x|y]. No need for both.
 		//screen_x = current_x;
 		//screen_y = current_y;
-		
+/*		
 		if(current_x + width >= 639)		// might not need this if we setup mouse bounds in FullScreen2d.java
 		{
 			current_x = 639 - width;
 		}
-		
+*/		
 		// Update ball here.
 		//this.current_x += this.vx;
 		//this.current_y += this.vy;
@@ -123,19 +122,24 @@ public class Ball extends SpriteObject {
 	}
 
 	public void handleCollision(SpriteObject collisionObject )
-	{
+	{ 
+		//graphics.box( collisionObject.current_x, collisionObject.current_y, collisionObject.width, collisionObject.height, 1, false );
 		  if ( collisionObject.current_y >= this.current_y && collisionObject.current_x >= this.current_x )
 		  {
 			  if ( collisionObject.current_y - this.current_y > collisionObject.current_x - this.current_x && this.vx > 0 )
 			  {
+				  // This doesn't appear to do anything.
 				  this.vy = -this.vy;    					  
 			  }
 			  else
 			  {
 				  this.vx = - this.vx;
 			  }
+			  
 		  }
 	    
+		  // headed left
+		  
 		  else if ( collisionObject.current_y >= this.current_y && collisionObject.current_x <= this.current_x )
 		  {
 			  if ( collisionObject.current_y - this.current_y > collisionObject.current_x - this.current_x && this.vx > 0 )
@@ -146,20 +150,9 @@ public class Ball extends SpriteObject {
 			  {
 				  this.vx = - this.vx;
 			  }
+			  
 		  }
 
-	      else if ( collisionObject.current_y <= this.current_y && collisionObject.current_x >= this.current_x )
-	      {
-			  if ( collisionObject.current_y - this.current_y > collisionObject.current_x - this.current_x && this.vx < 0 )
-			  {
-				  this.vy = -this.vy;    					  
-			  }
-			  else
-			  {
-				  this.vx = - this.vx;
-			  }
-	      }
-  
 		  else if ( collisionObject.current_y <= this.current_y && collisionObject.current_x <= this.current_x )
 		  {
 			  if ( collisionObject.current_y - this.current_y > collisionObject.current_x - this.current_x && this.vx < 0 )
@@ -170,7 +163,30 @@ public class Ball extends SpriteObject {
 			  {
 				  this.vx = - this.vx;
 			  }
-		  }		
+			  
+		  }
+		  
+
+		  // headed right?
+		  else if ( collisionObject.current_y <= this.current_y && collisionObject.current_x >= this.current_x )
+	      {
+			  if ( collisionObject.current_y - this.current_y > collisionObject.current_x - this.current_x && this.vx < 0 )
+			  {
+				  this.vy = -this.vy;    					  
+			  }
+			  else
+			  {
+				  this.vx = - this.vx;
+			  }
+			  return;
+	      }
+
+		  if ( collisionObject instanceof Brick )
+		  {
+			  Brick brick = (Brick)collisionObject;
+			  brick.Hit(1);
+		  }
+		  
 	}
 	
 	public Ball()
@@ -252,7 +268,8 @@ public class Ball extends SpriteObject {
 		}
 
 		// Moved Rectangle so it is created AFTER the validation.
-		rectangle = new Rectangle(current_x, current_y, width, height);		
+		// +1 to allocate for the black space between bricks.
+		rectangle = new Rectangle(current_x, current_y, width+1, height+1);		
 	}
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
