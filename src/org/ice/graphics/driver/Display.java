@@ -92,7 +92,6 @@ public class Display {
     	int a = 0;
 		display.renderFrameBuffer();
 
-		//System.out.println ("Fps:" + fps);
 		Thread.sleep(2000);
 		
 		

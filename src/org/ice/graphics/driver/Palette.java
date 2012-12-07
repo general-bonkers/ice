@@ -43,8 +43,6 @@ public class Palette {
 	public static void main ( String args[] )
 	{
 		Palette pal = new Palette( DOSPalette.pal );
-		System.out.println ( new Color( 0,170,0).getRGB() );
-		System.out.println ( pal.pal[2] );
 	}
 	
 	public Palette( int[] pal )

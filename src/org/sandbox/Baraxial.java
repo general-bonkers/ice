@@ -110,7 +110,8 @@ public static void main(String args[]) throws Exception {
     	  {
     		  fps = clock;
     		  clock = 0;
-    	      time = System.currentTimeMillis()+1000;    				  
+    	      time = System.currentTimeMillis()+1000;
+    	      //System.out.println ( fps );
     	  }
     	  graphics.clearScreen( 0 );
          

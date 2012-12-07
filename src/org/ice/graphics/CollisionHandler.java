@@ -45,7 +45,6 @@ public class CollisionHandler {
 		for (int i = 0; i < spriteObjects.size(); i++ )
 		{
 			SpriteObject srcObject = spriteObjects.get( i );
-			System.out.println(  i );
 			// Only check active objects
 			if ( srcObject.isActive )
 			{

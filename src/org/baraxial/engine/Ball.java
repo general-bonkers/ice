@@ -79,7 +79,6 @@ public class Ball extends SpriteObject {
 		
   	  this.current_x = Math.round( this.current_x + this.vx  );
   	  this.current_y = Math.round( this.current_y + this.vy  );
-		System.out.println(this.vx + " " + this.vy );
   	  // Wall Collision must come last!
       // !TODO move this elsewhere!
   	  if ( this.current_y + 1 > 470 )
