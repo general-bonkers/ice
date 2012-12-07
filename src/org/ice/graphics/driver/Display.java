@@ -155,19 +155,10 @@ public class Display {
 	          this.width = frame.getWidth();
 	          this.height = frame.getHeight();
 	          iceBuffer = new int[width + ( width * height ) ];	  		  
-	  		  //videoPage = new BufferedImage[VID_PAGES];
-	  		  //videoPageGraphics = new Graphics[VID_PAGES];
-	  		  /*
-	  		   * This section loops over the total number of video pages. The first line creates a new BufferedImage
-	  		   * object that will be written to the screen. The second line gets a pointer to the array that makes up
-	  		   * the buffered image. This array is what the driver writes to.  
-	  		   */
-	  		  for ( int i = 0; i < VID_PAGES; i++ )
-	  		  {
+
 	  			  screen = new BufferedImage( width, height, BufferedImage.TYPE_INT_RGB );
 	  			  videoPageGraphics = screen.getGraphics();
 	  			  screenBuffer = ((DataBufferInt)screen.getRaster().getDataBuffer()).getData();	  			  
-	  		  }
 	  		  //currentVideoPage = 0;
 	  		  
 	  		  // Init palette
