@@ -1,0 +1,10 @@
+fat, skinny, stickybomb, stickyball, 3balls, glasspaddle, random, slowball, fastball, 1up
+
+260
+77
+52
+94
+215
+154
+22
+92
