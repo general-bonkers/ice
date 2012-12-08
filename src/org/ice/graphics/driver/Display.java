@@ -141,7 +141,9 @@ public class Display {
 	          frame.setUndecorated(true);
 	          frame.setIgnoreRepaint(true);
 	          
-	          graphicsDevice.setFullScreenWindow(frame);   
+
+	          graphicsDevice.setFullScreenWindow(frame);
+	          
 	          if (graphicsDevice.isDisplayChangeSupported()) {
 	            graphicsDevice
 	                .setDisplayMode(getBestDisplayMode(graphicsDevice, displayMode ));

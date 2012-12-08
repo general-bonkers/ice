@@ -20,8 +20,8 @@ public class Ball extends SpriteObject {
 	public int max_x = 0;			// touch or attempt to cross these values.
 	public int max_y = 0;
 	
-	public int vx = 3;              // Velocity x and y. !TODO set these to 0 and let speed set them!
-	public int vy = 4;              //
+	public int vx = 2;              // Velocity x and y. !TODO set these to 0 and let speed set them!
+	public int vy = 3;              //
 	
 	public BallSpeed speed = BallSpeed.Normal;			// Hope like hell you don't get the slow speed paddle when the ball speed is set to Very Fast lol.	
 	public BallStatus status = BallStatus.Normal;		// No advantages or disadvantages.
@@ -60,6 +60,52 @@ public class Ball extends SpriteObject {
 		Fast,
 		Hyper
 	}
+	
+	/**
+	 * Ensures that the ball doesn't travel too fast.
+	 */
+	public void checkSpeed()
+	{
+		int maxX = 0;
+		int maxY = 0;
+		boolean isNegX = ( vx < 0 );
+		boolean isNegY = ( vy < 0 );
+		switch ( speed )
+		{
+		case Normal:
+			maxX = 3;
+			maxY = 2;
+			break;
+		case Slow:
+			maxX = 2;
+			maxY = 1;
+			break;
+		case Fast:
+			maxX = 4;
+			maxY = 3;
+			break;
+		case Hyper:
+			maxX = 5;
+			maxY = 4;
+			break;
+		}
+		// Slow velocity (if needed)
+		vx = Math.abs( vx );
+		vy = Math.abs( vx );
+		if ( vx > maxX )
+		{
+			vx = maxX;
+			if ( isNegX )
+				vx = -vx;
+		}
+		if ( vy > maxY )
+		{
+			vy = maxY;
+			if ( isNegY )
+				vy = -vy;
+		}
+	}
+	
 
 	public void DrawBall( Graphics graphics )
 	{
@@ -123,6 +169,19 @@ public class Ball extends SpriteObject {
 
 	public void handleCollision(SpriteObject collisionObject )
 	{ 
+		
+		// Paddle physics.
+		if ( collisionObject instanceof Paddle )
+		{
+			Paddle paddle = (Paddle)collisionObject;
+			//Ball.angle = MathHelper.PiOver2 * ((Ball.position.X - midplayer) / 75);
+			vx = (int)Math.round( vx + ( current_x - paddle.current_x ) * .08 );
+			//iX:=iX+(X-PaddleCenterX)*0.1
+			vy = -vy;
+			return;
+		}
+		
+		
 		//graphics.box( collisionObject.current_x, collisionObject.current_y, collisionObject.width, collisionObject.height, 1, false );
 		  if ( collisionObject.current_y >= this.current_y && collisionObject.current_x >= this.current_x )
 		  {

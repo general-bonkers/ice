@@ -36,8 +36,8 @@ public class Baraxial {
    * - fix bounce logic.. sometimes acts up (goes through paddle)
    * - make it so paddle shoots left when on left side and right when on right side
    * - hide pointer
-   * 
-   * 
+   * - ball moving straight up destroys all blocks (not good). It appears to not reverse direction.
+   * - paddle physics need more tweaking.
    * 
    * 
    * 
@@ -99,7 +99,7 @@ public static void main(String args[]) throws Exception {
       
       Ball ball;
       
-      ball = new Ball(300, 200, 4, 4, 7, 100, BallSpeed.Normal, BallStatus.Normal);
+      ball = new Ball(300, 400, 4, 4, 7, 100, BallSpeed.Normal, BallStatus.Normal);
       
       CollisionHandler collisionHandler = new CollisionHandler();
       
