@@ -18,6 +18,11 @@ public class XmlResourceHandler {
     	builder = new SAXBuilder();
     }
 	
+    public static void main ( String args[] )
+    {
+    	XmlResourceHandler xmlResourceHandler = new XmlResourceHandler();
+    	xmlResourceHandler.loadLevelPack( "./data/levels.xml" );
+    }
     /**
      * Loads a levelPack from disk and returns a campaign object.
      * 
@@ -25,7 +30,8 @@ public class XmlResourceHandler {
      */
 	public void loadLevelPack( String levelPack )
 	{
-		  File xmlFile = new File("./data/levels.xml");
+		//!TODO better error handling.
+		  File xmlFile = new File( levelPack );
 	 
 		  try {
 	 
@@ -62,8 +68,6 @@ public class XmlResourceHandler {
 			   System.out.println ( balls.size() + " ball(s) " );
 			   for ( int j = 0; j < balls.size(); j++ )
 			   {
-				   // ! animate balls so they appear to be spinning. Also consider using rolling 8ball for ball.
-				   // Other balls could be different pool balls. include animated frames for running up and down.
 				   Element ball = (Element)balls.get( j );
 				   System.out.print ( "Ball " + j+1 + ": " );
 				   System.out.print ( ball.getAttributeValue( "xpos" ) + " " );
