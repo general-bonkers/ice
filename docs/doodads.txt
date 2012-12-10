@@ -1,0 +1,22 @@
+Doodads:
+
+ these are good and bad things that float around the screen.
+ 
+ name <- identifies the type of object
+ xpos <- set this value to an absolute position if you wish to add in the middle of a level. These may not intersect with bricks. If value set to -1 then they spawn
+         automatically
+ ypos <- set this value to an absolute position if you wish to add in the middle of a level. These may not intersect with bricks. If value set to -1 then they spawn
+         automatically
+ 
+ frequency <- if xpos/ypos is negative then this determines the rate that the objects propegate.. low,medium,high,insane
+  
+   ** Idea.. create an aeomeba object that blobs around and eventually replicates.. Create a single level that is a non-breakable box with a bottom entrance. Put
+      a couple aeomeba in the center and set their frequency to insane.. every second or two they should split and double. This will prevent the ball
+      from hitting many bricks inside. The goal is to get the ball (or something) to fend them off or wait until you get lucky to kill the few
+      breakable bricks.
+ 
+  ballspeed <- option to determine what happens to ball speed. Most basic object types will have this preset, however users can modify to create interesting effects ;-)
+  
+  killball  <- option to determine what happens to ball when hit. Most basic object types will have this preset, however users can modify to create interesting effects ;-)
+  
+  ballstatus <- not sure.. ask j3ff

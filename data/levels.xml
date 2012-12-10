@@ -2,27 +2,27 @@
 <baraxial>
   <level title="Intro to Baraxial">
     <bricks>
-      <brick column="1" row="1" color="1" strenth="1" type="Normal" />
-      <brick column="2" row="2" color="2" strenth="2" type="Normal" />
-      <brick column="3" row="1" color="3" strenth="1" type="Normal" />
-      <brick column="4" row="2" color="4" strenth="2" type="Normal" />
-      <brick column="5" row="1" color="3" strenth="1" type="Normal" />
-      <brick column="6" row="2" color="3" strenth="10" type="Steel" />
-      <brick column="7" row="1" color="2" strenth="0" type="Glass" />
-      <brick column="8" row="2" color="1" strenth="10" type="Stone" />
-      <brick column="9" row="1" color="2" strenth="0" type="Glass" />
-      <brick column="10" row="2" color="3" strenth="10" type="Steel" />
-      <brick column="11" row="1" color="4" strenth="1" type="Normal" />
-      <brick column="12" row="2" color="3" strenth="2" type="Normal" />
-      <brick column="13" row="1" color="2" strenth="1" type="Normal" />
-      <brick column="14" row="2" color="1" strenth="2" type="Normal" />
-      <brick column="15" row="1" color="2" strenth="1" type="Normal" />      
+      <brick column="1" row="1" color="1" strength="1" type="Normal" />
+      <brick column="2" row="2" color="2" strength="2" type="Normal" />
+      <brick column="3" row="1" color="3" strength="1" type="Normal" />
+      <brick column="4" row="2" color="4" strength="2" type="Normal" />
+      <brick column="5" row="1" color="3" strength="1" type="Normal" />
+      <brick column="6" row="2" color="3" strength="10" type="Steel" />
+      <brick column="7" row="1" color="2" strength="0" type="Glass" />
+      <brick column="8" row="2" color="1" strength="10" type="Stone" />
+      <brick column="9" row="1" color="2" strength="0" type="Glass" />
+      <brick column="10" row="2" color="3" strength="10" type="Steel" />
+      <brick column="11" row="1" color="4" strength="1" type="Normal" />
+      <brick column="12" row="2" color="3" strength="2" type="Normal" />
+      <brick column="13" row="1" color="2" strength="1" type="Normal" />
+      <brick column="14" row="2" color="1" strength="2" type="Normal" />
+      <brick column="15" row="1" color="2" strength="1" type="Normal" />      
     </bricks>    
     <balls>
       <ball xpos="300" ypos="400" speed="Normal" status="Normal" />
     </balls>
-    <miscObjects>
-      <misc name="teleporter" xpos="rnd" ypos="rnd" color="rnd" ballspeed="Increase" killball="False" ballstatus="Normal" />
-    </miscObjects>
+    <doodads>
+      <doodad name="teleporter" xpos="rnd" ypos="rnd" frequency="low" speed="low" color="rnd" ballspeed="Increase" killball="False" ballstatus="Normal" />
+    </doodads>
   </level>
 </baraxial>
