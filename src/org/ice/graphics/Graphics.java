@@ -60,7 +60,8 @@ public class Graphics {
 	
 	public void init( int displayMode )
 	{
-		display.init( displayMode, true );
+		//display.init( displayMode, true );
+		display.init( displayMode, false );
 	}
 	
 	public void line( int x, int y, int x2, int y2, int color )

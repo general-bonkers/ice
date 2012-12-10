@@ -99,7 +99,7 @@ public static void main(String args[]) throws Exception {
       
       Ball ball;
       
-      ball = new Ball(300, 400, 4, 4, 7, 100, BallSpeed.Normal, BallStatus.Normal);
+      ball = new Ball(300, 400, 4, 4, 7, 100, BallSpeed.Slow, BallStatus.Normal);
       
       CollisionHandler collisionHandler = new CollisionHandler();
       

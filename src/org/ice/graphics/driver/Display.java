@@ -389,7 +389,7 @@ public class Display {
 	 */
 	public void pokeP( int x, int y, int color )
 	{
-		if ( x >= 0 && y >= 0 && x<= width && y <= height )
+		if ( x >= 0 && y >= 0 && x <= width-1 && y <= height-1 )
 		{
 			int seg = x + ( this.width * y );
 			iceBuffer[seg] = color;
@@ -406,7 +406,7 @@ public class Display {
 	public int peekP( int x, int y )
 	{
 		
-		if ( x >= 0 && y >= 0 && x<= width && y <= height )
+		if ( x >= 0 && y >= 0 && x<= width-1 && y <= height-1 )
 		{
 			int seg = x + ( this.width * y );
 			return iceBuffer[seg];
