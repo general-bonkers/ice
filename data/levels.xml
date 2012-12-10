@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <baraxial>
-  <level number="1" title="Intro to Baraxial">
-    <bricks count="15">
+  <level title="Intro to Baraxial">
+    <bricks>
       <brick column="1" row="1" color="1" strenth="1" type="Normal" />
       <brick column="2" row="2" color="2" strenth="2" type="Normal" />
       <brick column="3" row="1" color="3" strenth="1" type="Normal" />
@@ -18,11 +18,11 @@
       <brick column="14" row="2" color="1" strenth="2" type="Normal" />
       <brick column="15" row="1" color="2" strenth="1" type="Normal" />      
     </bricks>    
-    <balls count="1">
+    <balls>
       <ball xpos="300" ypos="400" speed="Normal" status="Normal" />
     </balls>
-    <miscObjects count="1">
+    <miscObjects>
       <misc name="teleporter" xpos="rnd" ypos="rnd" color="rnd" ballspeed="Increase" killball="False" ballstatus="Normal" />
     </miscObjects>
   </level>
-</note>
+</baraxial>
