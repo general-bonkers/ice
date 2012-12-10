@@ -21,6 +21,26 @@
   - help <- quick info with images for help
   - about <- self-explanatory 
   -exit
+  
+-[Releases??]-----------------------------------------------------  
+ - need a version # in game, for patches and small updates
+ - consider creating more level packs as well
+ - consider next holiday season (if this game goes well) releasing an xmas bonus version
+  + new music (mostly holiday themed)
+  + new campaign (holiday themed levels & 3d objects in background )
+  + new doodads?
+  + snow (optionable defaults to on) that interacts with bricks
+  + a boss (if we can stretch it)
+  
+ - if game goes really really well! consider adding an expansion pack.. baraxial expo!
+   + bosses
+   + more doodads
+   + new features
+   + ??
+  
+
+
+
  turbo mode (for kiddies who play fast)
  turrets (slowly shoot one little bullet at a time at you.. may bounce off bricks not hurting
           them, but destroys ball. these would have to aim and shoot slow, with not much accuracy)
