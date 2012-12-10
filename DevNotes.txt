@@ -13,6 +13,14 @@
 -[Nice to Have]-----------------------------------------------------------------------------------------------
  doodads
  bosses
+ pool balls for balls (animated.. they roll in direction they are headed.)
+ retro menu for game? include starfield with a ship or something flying around.
+  - new game  <- sub-menu that includes list of campaigns.. include option to download more online
+  - options  
+  - level editor <- takes you to the level editor 'app'
+  - help <- quick info with images for help
+  - about <- self-explanatory 
+  -exit
  turbo mode (for kiddies who play fast)
  turrets (slowly shoot one little bullet at a time at you.. may bounce off bricks not hurting
           them, but destroys ball. these would have to aim and shoot slow, with not much accuracy)
