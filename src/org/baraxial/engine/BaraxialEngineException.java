@@ -11,7 +11,7 @@ public class BaraxialEngineException extends Exception
 		Ball,
 		Brick,
 		Paddle,
-		PowerUp,
+		Drop,
 		Rocket,
 		AlienCraft,
 		Boss,
