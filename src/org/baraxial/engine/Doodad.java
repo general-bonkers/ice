@@ -20,9 +20,9 @@ public class Doodad extends SpriteObject {
 	public int max_x = 0;			// touch or attempt to cross these values.
 	public int max_y = 0;
 	
-	public int vx = 1;              // Velocity x and y. !TODO set these to 0 and let speed set them!
+	public int vx = 3;              // Velocity x and y. !TODO set these to 0 and let speed set them!
 	public int vy = 2;              //
-	public int vstep = 2;           //
+	public int vstep = 10;           //
 	public int vclock = 0;
 	
 	public DoodadSpeed speed = DoodadSpeed.Normal;			// Hope like hell you don't get the slow speed paddle when the ball speed is set to Very Fast lol.	
@@ -237,12 +237,14 @@ public class Doodad extends SpriteObject {
 			  return;
 	      }
 
+		  /*
+		   * Only little guy doodad needs to do this.
 		  if ( collisionObject instanceof Brick )
 		  {
 			  Brick brick = (Brick)collisionObject;
 			  brick.Hit(1);
 		  }
-
+		  */
 		  
 		  if ( vx == oldVX && vy == oldVY )
 		  {
@@ -278,8 +280,8 @@ public class Doodad extends SpriteObject {
 		this.isActive = true;
 		this.current_x = current_x;
 		this.current_y = current_y;
-		this.width = 10;
-		this.height = 5;
+		this.width = 20;
+		this.height = 10;
 		this.color = color;
 		this.speed = speed;
 		this.status = status;

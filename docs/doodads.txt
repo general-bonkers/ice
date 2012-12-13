@@ -20,3 +20,13 @@ Doodads:
   killball  <- option to determine what happens to ball when hit. Most basic object types will have this preset, however users can modify to create interesting effects ;-)
   
   ballstatus <- not sure.. ask j3ff
+
+  
+  
+  ---------------------- Doodad type ----------------
+   - Aeomeba (check idea above)
+   
+   - little guy.. make this a funky version of the paddle, but smaller He is extremely rare to appear randomly, but may be found wandering random dungeons. He eats
+     bricks and moves around sporadically.
+   
+   -
