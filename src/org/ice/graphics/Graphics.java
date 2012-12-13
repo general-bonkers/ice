@@ -62,6 +62,7 @@ public class Graphics {
 	{
 		//display.init( displayMode, true );
 		display.init( displayMode, false );
+		display.clearScreenP( 0 );
 	}
 	
 	public void line( int x, int y, int x2, int y2, int color )
@@ -229,16 +230,13 @@ public class Graphics {
 	{
 		Graphics g = new Graphics();
 		g.init(0);
-		try {
+		g.clearScreen(0);
+		//try {
 		ImageBuffer i = g.loadImage( "./gfx/wombat_logo2.bmp", true );
-		g.drawImage(i, 100, 100, false);
-		}
-		catch ( Exception e )
-		{
-			e.printStackTrace();
-		}
+		g.drawImage(i, 200, 100, false);
+		//}
 		g.render();
-		Thread.sleep(2000);
+		Thread.sleep(6000);
 		g.exit();
 	}
 }

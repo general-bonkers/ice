@@ -73,36 +73,32 @@ public class Ball extends SpriteObject {
 		switch ( speed )
 		{
 		case Normal:
-			maxX = 3;
-			maxY = 2;
-			break;
-		case Slow:
-			maxX = 2;
-			maxY = 1;
-			break;
-		case Fast:
 			maxX = 4;
 			maxY = 3;
 			break;
-		case Hyper:
+		case Slow:
+			maxX = 3;
+			maxY = 2;
+			break;
+		case Fast:
 			maxX = 5;
 			maxY = 4;
 			break;
+		case Hyper:
+			maxX = 6;
+			maxY = 5;
+			break;
 		}
 		// Slow velocity (if needed)
-		vx = Math.abs( vx );
-		vy = Math.abs( vx );
-		if ( vx > maxX )
+		int tmpVX = Math.abs( vx );
+		int tmpVY = Math.abs( vx );
+		if ( tmpVX > maxX )
 		{
-			vx = maxX;
-			if ( isNegX )
-				vx = -vx;
+			vx = ( vx < 0 ) ? -maxX : maxX; 
 		}
-		if ( vy > maxY )
+		if ( tmpVY > maxY )
 		{
-			vy = maxY;
-			if ( isNegY )
-				vy = -vy;
+			vy = ( vy < 0 ) ? -maxY : maxY; 
 		}
 	}
 	
@@ -121,6 +117,15 @@ public class Ball extends SpriteObject {
 		// Update ball here.
 		//this.current_x += this.vx;
 		//this.current_y += this.vy;
+	  /* ---- Phaysics Hacks -------- */
+	 
+	  // ensure ball never goes straight up and down.
+	  if ( vx == 0 )
+	  {
+		  vx = getBallEntropy();
+	  }
+		
+	  /* ---------------------------- */	
 		
   	  this.current_x = Math.round( this.current_x + this.vx  );
   	  this.current_y = Math.round( this.current_y + this.vy  );
@@ -143,6 +148,10 @@ public class Ball extends SpriteObject {
 		graphics.circle(current_x, current_y, width, color, true);
 		graphics.circle(current_x + 1, current_y + 1, width - 2, color + 8, false);
 		graphics.circle(current_x, current_y, width, color + 8, false);
+		
+		// debug collision area
+		//graphics.box( this.rectangle.x, this.rectangle.y, this.rectangle.width, this.rectangle.height, color, true );
+		checkSpeed();
 	}
 		
 	public void Hit(int damage)
@@ -169,18 +178,33 @@ public class Ball extends SpriteObject {
 
 	public void handleCollision(SpriteObject collisionObject )
 	{ 
+		int oldVX = vx;
+		int oldVY = vy;
 		
 		// Paddle physics.
 		if ( collisionObject instanceof Paddle )
 		{
 			Paddle paddle = (Paddle)collisionObject;
 			//Ball.angle = MathHelper.PiOver2 * ((Ball.position.X - midplayer) / 75);
-			vx = (int)Math.round( vx + ( current_x - paddle.current_x ) * .08 );
+			// Numbers get a bit nuts here. If you hit
+//			vx = (int)Math.round( ( current_x - ( paddle.current_x + ( paddle.width / 2 ) ) ) * .08 );
+			vx = (int)Math.round( ( current_x - ( paddle.current_x + paddle.current_x ) ) * .08 );
+			
+			// sorta better, but values are wayy off
+			//vx = (int)Math.round( current_x - ( ( paddle.current_x + ( paddle.width / 2 ) ) ) );
+			
+			//!TODO shoddy math.. fix this!
+			
+			// invert !SHODDY FIX
+			//if ( oldVX > 0 )
+			//	vx = -vx;
+			
+			//!TODO don't invert VY if you bump the side.
+			
 			//iX:=iX+(X-PaddleCenterX)*0.1
 			vy = -vy;
 			return;
 		}
-		
 		
 		//graphics.box( collisionObject.current_x, collisionObject.current_y, collisionObject.width, collisionObject.height, 1, false );
 		  if ( collisionObject.current_y >= this.current_y && collisionObject.current_x >= this.current_x )
@@ -207,7 +231,7 @@ public class Ball extends SpriteObject {
 			  }
 			  else
 			  {
-				  this.vx = - this.vx;
+				  this.vx = - this.vx ;
 			  }
 			  
 		  }
@@ -220,7 +244,7 @@ public class Ball extends SpriteObject {
 			  }
 			  else
 			  {
-				  this.vx = - this.vx;
+				  this.vx = - this.vx ;
 			  }
 			  
 		  }
@@ -245,9 +269,28 @@ public class Ball extends SpriteObject {
 			  Brick brick = (Brick)collisionObject;
 			  brick.Hit(1);
 		  }
+
+		  
+		  if ( vx == oldVX && vy == oldVY )
+		  {
+			  System.out.println ("Failed to reverse direction of ball!!" );
+		  }
 		  
 	}
-	
+	public int getBallEntropy()
+	{
+		  int tmp = (int)( Math.random() + 1 ) * 2;
+		  return ( Math.random() > 0 ) ? tmp : -tmp;
+	}
+
+	public int getBallEntropy( int velocity )
+	{
+		//!TODO FIX!! (this isn't working right now)
+		//  int tmp = (int)( Math.random())  ;
+		//  return ( velocity > 0 ) ? tmp : -tmp;
+		return 0;
+	}
+
 	public Ball()
 	{
 		// Do Nothing

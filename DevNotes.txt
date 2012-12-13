@@ -5,6 +5,7 @@
  image sprites & backgrounds
  playfield (borders or whatever)
  font
+ - some type of license in case we go android!
  level editor
  levels!
  collision engine
@@ -13,6 +14,7 @@
 -[Nice to Have]-----------------------------------------------------------------------------------------------
  doodads
  bosses
+ - beat up bricks should start looking deformed
  pool balls for balls (animated.. they roll in direction they are headed.)
  retro menu for game? include starfield with a ship or something flying around.
   - new game  <- sub-menu that includes list of campaigns.. include option to download more online

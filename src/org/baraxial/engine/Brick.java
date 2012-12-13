@@ -43,10 +43,15 @@ public class Brick extends SpriteObject {
 	}
 	
 	public void DrawBrick(Graphics graphics)
-	{		
+	{	
+		
 		graphics.box(current_x, current_y, width, height, color, true);
   	  	graphics.box(current_x + 1, current_y + 1, width - 2, height - 2, color + 8, false);
   	  	graphics.box(current_x, current_y, width, height, color + 8, false);
+  	  	
+		// debug collision area 
+		//graphics.box( this.rectangle.x, this.rectangle.y, this.rectangle.width, this.rectangle.height, color, false );
+
 	}
 	
 	public int Hit(int damage)
@@ -151,7 +156,7 @@ public class Brick extends SpriteObject {
 			throw new BaraxialEngineException(ExceptionType.Brick, message);
 		}
 		// Moved Rectangle so it is created AFTER the validation.
-		this.rectangle = new Rectangle(current_x, current_y, width, height);
+		this.rectangle = new Rectangle(current_x, current_y, width+1, height+1);
 	}
 	
 	// This function should ensure game rules are followed at all times
