@@ -8,10 +8,13 @@ import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferStrategy;
 
 import org.baraxial.engine.Ball;
+import org.baraxial.engine.Ball.BallStatus;
 import org.baraxial.engine.Brick;
+import org.baraxial.engine.Doodad;
 import org.baraxial.engine.Paddle;
 import org.baraxial.engine.Ball.BallSpeed;
-import org.baraxial.engine.Ball.BallStatus;
+import org.baraxial.engine.Doodad.DoodadSpeed;
+import org.baraxial.engine.Doodad.DoodadStatus;
 import org.baraxial.engine.Brick.Type;
 import org.baraxial.engine.Paddle.PaddleSpeed;
 import org.baraxial.engine.Paddle.PaddleStatus;
@@ -97,9 +100,8 @@ public static void main(String args[]) throws Exception {
       //                    x,   y,  w,  h, c,   s,              Speed,              Status
       paddle = new Paddle(320, 420, 45, 10, 6, 100, PaddleSpeed.Normal, PaddleStatus.Normal);
       
-      Ball ball;
-      
-      ball = new Ball(300, 400, 4, 4, 7, 100, BallSpeed.Slow, BallStatus.Normal);
+      Ball ball = new Ball(300, 400, 4, 4, 7, 100, BallSpeed.Normal, BallStatus.Normal );
+      Doodad doodad = new Doodad( 200, 20, 1, DoodadSpeed.Normal, DoodadStatus.Normal );
       
       CollisionHandler collisionHandler = new CollisionHandler();
       
@@ -112,6 +114,7 @@ public static void main(String args[]) throws Exception {
       // Add rest of items
       collisionHandler.addSpriteObject( paddle );
       collisionHandler.addSpriteObject( ball );
+      collisionHandler.addSpriteObject( doodad );
       
       long time = System.currentTimeMillis()+1000;
       int clock = 0;
@@ -166,6 +169,8 @@ public static void main(String args[]) throws Exception {
           //paddle.screen_y = mouse.getMouseY();		// This would allow the paddle to move up or down as well.
           
           paddle.DrawPaddle( graphics );
+          doodad.updateDooDad();
+          doodad.DrawDoodad( graphics );
           ball.DrawBall( graphics );
           //graphics.drawImage( logo, 200, 200, false );
     	  graphics.render();
